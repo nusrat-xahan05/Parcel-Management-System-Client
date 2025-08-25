@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/popover"
 import { Link } from "react-router"
 import { ModeToggle } from "./ModeToggler"
+import { authApi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
+import { useAppDispatch } from "@/redux/hook"
+import React from "react"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -22,6 +25,14 @@ const navigationLinks = [
 ]
 
 export default function Navbar() {
+  const { data } = useUserInfoQuery(undefined);
+  const [logout] = useLogoutMutation();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = async () => {
+    await logout(undefined);
+    dispatch(authApi.util.resetApiState());
+  };
 
   return (
     <header className="border-b px-4 md:px-6">
@@ -39,22 +50,47 @@ export default function Navbar() {
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
-                  <NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      asChild
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                    >
-                      <Link to={link.href}>{link.label}</Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
+                  <React.Fragment key={index}>
+                    {link.role === "PUBLIC" && (
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          asChild
+                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                    {link.role === data?.data?.role && (
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          asChild
+                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                  </React.Fragment>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
           </div>
 
-          <Button asChild variant="ghost" size="sm" className="text-sm">
-            <a href="#">Sign In</a>
-          </Button>
+          {data?.data?.email && (
+            <Button
+              onClick={handleLogout}
+              variant="outline"
+              className="text-sm"
+            >
+              Logout
+            </Button>
+          )}
+          {!data?.data?.email && (
+            <Button asChild className="text-sm">
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
           <ModeToggle></ModeToggle>
 
           {/* Mobile menu trigger */}
@@ -65,14 +101,31 @@ export default function Navbar() {
               </Button>
             </PopoverTrigger>
             <PopoverContent align="start" className="w-36 p-1 md:hidden">
-              <NavigationMenu className="max-w-none *:w-full">
-                <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
+              <NavigationMenu className="max-md:hidden">
+                <NavigationMenuList className="gap-2">
                   {navigationLinks.map((link, index) => (
-                    <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink asChild className="py-1.5">
-                        <Link to={link.href}>{link.label} </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
+                    <React.Fragment key={index}>
+                      {link.role === "PUBLIC" && (
+                        <NavigationMenuItem>
+                          <NavigationMenuLink
+                            asChild
+                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          >
+                            <Link to={link.href}>{link.label}</Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                      {link.role === data?.data?.role && (
+                        <NavigationMenuItem>
+                          <NavigationMenuLink
+                            asChild
+                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          >
+                            <Link to={link.href}>{link.label}</Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                    </React.Fragment>
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>

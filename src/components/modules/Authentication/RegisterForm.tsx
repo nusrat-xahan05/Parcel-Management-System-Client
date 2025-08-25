@@ -62,8 +62,6 @@ export function RegisterForm({
             role: data.role
         };
 
-        console.log('Role', data.role.length);
-
         try {
             const result = await register(userInfo).unwrap();
             console.log(result);
