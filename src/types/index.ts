@@ -1,0 +1,30 @@
+import type { ComponentType } from 'react';
+
+export type { ILogin } from './auth.type';
+export type { ISendOtp, IVerifyOtp } from './otp.type';
+export type { TRole } from './user.type';
+export type { IUser } from './user.type';
+
+interface TMeta {
+    page: number;
+    limit: number;
+    totalPage: number;
+    total: number
+}
+
+export interface IResponse<T> {
+    statusCode?: number;
+    success: boolean;
+    message: string;
+    data?: T;
+    meta?: TMeta
+}
+
+export interface ISidebarItem {
+    title: string;
+    items: {
+        title: string;
+        url: string;
+        component: ComponentType;
+    }[];
+}

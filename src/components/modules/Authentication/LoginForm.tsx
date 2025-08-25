@@ -24,8 +24,8 @@ export function LoginForm({
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         const loginInfo = {
-            ...data,
-            email: data.email.toLowerCase()
+            email: data.email.toLowerCase(),
+            password: data.password
         }
         try {
             const res = await login(loginInfo).unwrap();

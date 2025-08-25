@@ -63,12 +63,14 @@ export function RegisterForm({
         };
 
         try {
-            const result = await register(userInfo).unwrap();
-            console.log(result);
+            const res = await register(userInfo).unwrap();
+            console.log(res);
             toast.success("User created successfully");
             navigate("/verify");
-        } catch (error) {
-            console.error(error);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (err: any) {
+            console.error(err);
+            toast.error(`${err.data.message}`);
         }
     };
 
