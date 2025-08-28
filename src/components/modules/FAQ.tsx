@@ -42,7 +42,7 @@ const items = [
 
 export default function FAQ() {
   return (
-    <div className='mx-auto max-w-7xl py-32'>
+    <div className='mx-auto max-w-7xl pb-24'>
       <div className="space-y-4 grid grid-cols-2 items-center">
         <div className=''>
           <img src={faqImg} alt="FAQ Image" />
