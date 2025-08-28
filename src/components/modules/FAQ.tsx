@@ -1,4 +1,4 @@
-import faqImg from '@/assets/images/FAQ.png'
+import faqImg from '@/assets/images/faq.png'
 
 import {
   Accordion,
