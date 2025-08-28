@@ -4,8 +4,8 @@ import { ArrowRight } from 'lucide-react'
 
 export default function Banner() {
     return (
-        <div className="bg-white mx-auto max-w-7xl md:grid md:grid-cols-2 md:items-center md:gap-4 px-4 md:px-6 py-24 sm:py-32 md:py-10 lg:py-0">
-            <div className="text-left">
+        <div className="bg-white md:grid md:grid-cols-2 md:items-center md:gap-4 px-4 md:px-6 py-24 sm:py-32 md:py-10 lg:py-0">
+            <div className="text-left mx-auto max-w-7xl">
                 <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
                     We Provide<strong className="text-primary"> Fast Secure Reliable </strong>Parcel Delivery
                 </h1>

@@ -1,0 +1,68 @@
+import faqImg from '@/assets/images/FAQ.png'
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+const items = [
+  {
+    id: "1",
+    title: "How do I book a parcel delivery with ParcelRunner?",
+    content:
+      "You can easily book a parcel online by creating an account, entering sender, receiver and parcel details, selecting a delivery option, and confirming payment.",
+  },
+  {
+    id: "2",
+    title: "How can I track my parcel?",
+    content:
+      "After booking, you will receive a unique tracking ID. Simply enter this ID on the ParcelRunner website to get real-time updates on your parcel’s location and status.",
+  },
+  {
+    id: "3",
+    title: "What items are restricted from delivery?",
+    content:
+      "For safety reasons, ParcelRunner does not accept hazardous materials, explosives, perishable items, or illegal goods. Please check our restricted items list before booking.",
+  },
+  {
+    id: "4",
+    title: "How long does delivery usually take?",
+    content:
+      "Delivery time depends on the service you choose. Standard delivery typically takes 2–4 business days, while express delivery can arrive within 24-48 hours.",
+  },
+  {
+    id: "5",
+    title: "What should I do if my parcel is delayed or lost?",
+    content:
+      "If your parcel is delayed, you can track its status online or contact our support team. In rare cases of lost parcels, we provide compensation based on our policy.",
+  }
+]
+
+export default function FAQ() {
+  return (
+    <div className='mx-auto max-w-7xl py-32'>
+      <div className="space-y-4 grid grid-cols-2 items-center">
+        <div className=''>
+          <img src={faqImg} alt="FAQ Image" />
+        </div>
+        <div className='pr-16'>
+          <h2 className="text-3xl pb-2.5 font-bold">FAQ</h2>
+          <Accordion type="single" collapsible className="w-full" defaultValue="3">
+            {items.map((item) => (
+              <AccordionItem value={item.id} key={item.id} className="py-2">
+                <AccordionTrigger className="py-2 text-base leading-6 hover:no-underline">
+                  {item.title}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pb-2">
+                  {item.content}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+    </div>
+  )
+}
