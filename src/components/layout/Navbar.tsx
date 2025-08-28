@@ -21,7 +21,8 @@ import React from "react"
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
-  { href: "/about", label: "About", role: "PUBLIC" }
+  { href: "/about", label: "About", role: "PUBLIC" },
+  { href: "/contact", label: "Contact", role: "PUBLIC" }
 ]
 
 export default function Navbar() {
@@ -38,9 +39,7 @@ export default function Navbar() {
     <header className="border-b px-4 md:px-6">
       <div className="flex h-16 items-center justify-between">
         {/* Left side */}
-        <a href="#" className="text-primary hover:text-primary/90">
-          <Logo />
-        </a>
+        <Link className="text-primary hover:text-primary/90" to="/"><Logo /></Link>
 
         {/* Right side */}
         <div className="flex items-center gap-2">

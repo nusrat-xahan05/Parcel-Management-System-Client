@@ -1,7 +1,10 @@
 import App from "@/App";
-import Banner from "@/components/modules/HomePage/Banner";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+import HomePage from "@/pages/HomePage";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import TrackOrder from "@/pages/TrackOrder";
 import Verify from "@/pages/Verify";
 import { createBrowserRouter } from "react-router";
 
@@ -11,8 +14,20 @@ export const router = createBrowserRouter([
         path: "/",
         children: [
             {
-                Component: Banner,
+                Component: HomePage,
                 index: true,
+            },
+            {
+                Component: About,
+                path: "/about",
+            },
+            {
+                Component: Contact,
+                path: "/contact",
+            },
+            {
+                Component: TrackOrder,
+                path: "/track",
             },
         ]
     },

@@ -1,4 +1,6 @@
+import { Link } from 'react-router'
 import bannerImg from './../../../assets/images/banner.jpg'
+import { ArrowRight } from 'lucide-react'
 
 export default function Banner() {
     return (
@@ -12,13 +14,12 @@ export default function Banner() {
                 </p>
 
                 <div className="mt-4 flex gap-4 sm:mt-6">
-                    <a className="inline-block rounded border border-primary bg-primary px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-white hover:text-gray-700"
-                        href="#">Get Started
-                    </a>
+                    <Link className='inline-block rounded border border-primary bg-primary px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-white hover:text-gray-700' to='/login'>Get Started</Link>
 
-                    <a className="inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900"
-                        href="#">Learn More
-                    </a>
+                    <Link className='rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 flex gap-1.5 items-center' to='/track'>
+                        <p className=''>Track Parcel</p>
+                        <ArrowRight></ArrowRight>
+                    </Link>
                 </div>
             </div>
 
