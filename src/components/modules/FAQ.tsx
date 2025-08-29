@@ -42,20 +42,20 @@ const items = [
 
 export default function FAQ() {
   return (
-    <div className='mx-auto max-w-7xl pb-24'>
-      <div className="space-y-4 grid grid-cols-2 items-center">
-        <div className=''>
+    <div className='mx-auto max-w-7xl px-4 py-20 bg-foreground'>
+      <div className="grid grid-cols-2 items-center">
+        <div>
           <img src={faqImg} alt="FAQ Image" />
         </div>
         <div className='pr-16'>
-          <h2 className="text-3xl pb-2.5 font-bold">FAQ</h2>
+          <h3 className="text-[32px] font-extrabold pb-5 text-background">FAQ</h3>
           <Accordion type="single" collapsible className="w-full" defaultValue="3">
             {items.map((item) => (
-              <AccordionItem value={item.id} key={item.id} className="py-2">
-                <AccordionTrigger className="py-2 text-base leading-6 hover:no-underline">
+              <AccordionItem value={item.id} key={item.id} className="py-2 border-b-2 border-muted-foreground">
+                <AccordionTrigger className="py-2 text-base text-background leading-6 hover:no-underline">
                   {item.title}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-2">
+                <AccordionContent className="text-accent/80 pb-2">
                   {item.content}
                 </AccordionContent>
               </AccordionItem>
