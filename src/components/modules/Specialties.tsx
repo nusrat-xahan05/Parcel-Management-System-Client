@@ -4,6 +4,7 @@ import { FaPersonBreastfeeding } from "react-icons/fa6";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { NotepadText } from "lucide-react";
 import { TbTruckDelivery } from "react-icons/tb";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export default function Specialties() {
     return (
@@ -13,48 +14,60 @@ export default function Specialties() {
                 <p className="text-foreground/50">We've easy-to-use and safe services with a passionate team of logistics experts to building a seamless professional delivery experience.</p>
             </div>
             <div className="grid grid-cols-3 gap-5 mt-14">
-                <div className="border-l-3 border-primary bg-linear-to-r from-border to-primary/50 rounded-2xl px-5 py-6 flex gap-3.5">
-                    <NotepadText className="size-12" />
-                    <div>
-                        <h5 className="mb-3 text-lg font-medium">Cash to Order</h5>
-                        <p className="text-foreground/50">Conveniently pay when you confirm your parcel booking.</p>
-                    </div>
-                </div>
-                <div className="border-l-3 border-primary bg-linear-to-r from-border to-primary/50 rounded-2xl px-5 py-6 flex gap-3.5">
-                    <TbTruckDelivery className="size-16" />
-                    <div>
-                        <h5 className="mb-3 text-lg font-medium">Cash on Delivery</h5>
-                        <p className="text-foreground/50">Flexible payment option where receivers pay upon delivery.</p>
-                    </div>
-                </div>
-                <div className="border-l-3 border-primary bg-linear-to-r from-border to-primary/50 rounded-2xl px-5 py-6 flex gap-3.5">
-                    <FaMapLocationDot className="size-12" />
-                    <div>
-                        <h5 className="mb-3 text-lg font-medium">Live Tracking</h5>
-                        <p className="text-foreground/50">Monitor your parcel's journey in real-time with status updates.</p>
-                    </div>
-                </div>
-                <div className="border-l-3 border-primary bg-linear-to-r from-border to-primary/50 rounded-2xl px-5 py-6 flex gap-3.5">
-                    <FaPersonBreastfeeding className="size-10" />
-                    <div>
-                        <h5 className="mb-3 text-lg font-medium">Delivery Agents</h5>
-                        <p className="text-foreground/50">Ensuring safe & fast parcel transportation</p>
-                    </div>
-                </div>
-                <div className="border-l-3 border-primary bg-linear-to-r from-border to-primary/50 rounded-2xl px-5 py-6 flex gap-3.5">
-                    <GrTechnology className="size-10" />
-                    <div>
-                        <h5 className="mb-3 text-lg font-medium">Tech Team</h5>
-                        <p className="text-foreground/50">Building reliable tracking & booking systems</p>
-                    </div>
-                </div>
-                <div className="border-l-3 border-primary bg-linear-to-r from-border to-primary/50 rounded-2xl px-5 py-6 flex gap-3.5">
-                    <MdOutlineSupportAgent className="size-12" />
-                    <div>
-                        <h5 className="mb-3 text-lg font-medium">Support Team</h5>
-                        <p className="text-foreground/50">Always ready to assist customers</p>
-                    </div>
-                </div>
+                <Card className="border-l-4 border-l-primary rounded-2xl shadow-md hover:shadow-lg transition">
+                    <CardHeader>
+                        <NotepadText className="size-12" />
+                    </CardHeader>
+                    <CardContent>
+                        <CardTitle className="mb-3 text-lg font-medium">Cash to Order</CardTitle>
+                        <p className="text-muted-foreground">Conveniently pay when you confirm your parcel booking.</p>
+                    </CardContent>
+                </Card>
+                <Card className="border-l-4 border-l-primary rounded-2xl shadow-md hover:shadow-lg transition">
+                    <CardHeader>
+                        <TbTruckDelivery className="size-12" />
+                    </CardHeader>
+                    <CardContent>
+                        <CardTitle className="mb-3 text-lg font-medium">Cash on Delivery</CardTitle>
+                        <p className="text-muted-foreground">Flexible payment option where receivers pay upon delivery.</p>
+                    </CardContent>
+                </Card>
+                <Card className="border-l-4 border-l-primary rounded-2xl shadow-md hover:shadow-lg transition">
+                    <CardHeader>
+                        <FaMapLocationDot className="size-12" />
+                    </CardHeader>
+                    <CardContent>
+                        <CardTitle className="mb-3 text-lg font-medium">Live Tracking</CardTitle>
+                        <p className="text-muted-foreground">Monitor your parcel's journey in real-time with status updates.</p>
+                    </CardContent>
+                </Card>
+                <Card className="border-l-4 border-l-primary rounded-2xl shadow-md hover:shadow-lg transition">
+                    <CardHeader>
+                        <FaPersonBreastfeeding className="size-10" />
+                    </CardHeader>
+                    <CardContent>
+                        <CardTitle className="mb-3 text-lg font-medium">Delivery Agents</CardTitle>
+                        <p className="text-muted-foreground">Ensuring safe & fast parcel transportation</p>
+                    </CardContent>
+                </Card>
+                <Card className="border-l-4 border-l-primary rounded-2xl shadow-md hover:shadow-lg transition">
+                    <CardHeader>
+                        <GrTechnology className="size-10" />
+                    </CardHeader>
+                    <CardContent>
+                        <CardTitle className="mb-3 text-lg font-medium">Tech Team</CardTitle>
+                        <p className="text-muted-foreground">Building reliable tracking & booking systems</p>
+                    </CardContent>
+                </Card>
+                <Card className="border-l-4 border-l-primary rounded-2xl shadow-md hover:shadow-lg transition">
+                    <CardHeader>
+                        <MdOutlineSupportAgent className="size-12" />
+                    </CardHeader>
+                    <CardContent>
+                        <CardTitle className="mb-3 text-lg font-medium">Support Team</CardTitle>
+                        <p className="text-muted-foreground">Always ready to assist customers</p>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     )

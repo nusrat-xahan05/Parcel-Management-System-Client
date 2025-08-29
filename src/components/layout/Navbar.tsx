@@ -1,39 +1,26 @@
-import HamburgerMenu from "@/assets/icons/HamburgerMenu"
-import Logo from "@/assets/icons/Logo"
+import UserMenu from "@/components/user-menu"
 import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, } from "@/components/ui/navigation-menu"
+import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popover"
+import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
 import { Link } from "react-router"
-import { ModeToggle } from "./ModeToggler"
-import { authApi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api"
-import { useAppDispatch } from "@/redux/hook"
+import HamburgerMenu from "@/assets/icons/HamburgerMenu"
 import React from "react"
+import { ModeToggle } from "./ModeToggler"
+import Logo from "@/assets/icons/Logo"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
   { href: "/", label: "Home", role: "PUBLIC" },
   { href: "/about", label: "About", role: "PUBLIC" },
+  { href: "/services", label: "Services", role: "PUBLIC" },
+  { href: "/faq", label: "FAQ", role: "PUBLIC" },
   { href: "/contact", label: "Contact", role: "PUBLIC" }
 ]
 
 export default function Navbar() {
-  const { data } = useUserInfoQuery(undefined);
-  const [logout] = useLogoutMutation();
-  const dispatch = useAppDispatch();
+  const { data, isLoading } = useUserInfoQuery(undefined);
 
-  const handleLogout = async () => {
-    await logout(undefined);
-    dispatch(authApi.util.resetApiState());
-  };
 
   return (
     <header className="border-b px-4 md:px-6">
@@ -76,20 +63,15 @@ export default function Navbar() {
             </NavigationMenu>
           </div>
 
-          {data?.data?.email && (
-            <Button
-              onClick={handleLogout}
-              variant="outline"
-              className="text-sm"
-            >
-              Logout
-            </Button>
+          {data?.data?.email && !isLoading && (
+            <UserMenu userInfo={data.data} />
           )}
           {!data?.data?.email && (
             <Button asChild className="text-sm">
               <Link to="/login">Login</Link>
             </Button>
           )}
+
           <ModeToggle></ModeToggle>
 
           {/* Mobile menu trigger */}
@@ -100,34 +82,34 @@ export default function Navbar() {
               </Button>
             </PopoverTrigger>
             <PopoverContent align="start" className="w-36 p-1 md:hidden">
-              <NavigationMenu className="max-md:hidden">
-                <NavigationMenuList className="gap-2">
-                  {navigationLinks.map((link, index) => (
-                    <React.Fragment key={index}>
-                      {link.role === "PUBLIC" && (
-                        <NavigationMenuItem>
-                          <NavigationMenuLink
-                            asChild
-                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                          >
-                            <Link to={link.href}>{link.label}</Link>
-                          </NavigationMenuLink>
-                        </NavigationMenuItem>
-                      )}
-                      {link.role === data?.data?.role && (
-                        <NavigationMenuItem>
-                          <NavigationMenuLink
-                            asChild
-                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                          >
-                            <Link to={link.href}>{link.label}</Link>
-                          </NavigationMenuLink>
-                        </NavigationMenuItem>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
+                <NavigationMenu className="max-w-none *:w-full">
+                  <NavigationMenuList className="gap-2 grid">
+                    {navigationLinks.map((link, index) => (
+                      <React.Fragment key={index}>
+                        {link.role === "PUBLIC" && (
+                          <NavigationMenuItem>
+                            <NavigationMenuLink
+                              asChild
+                              className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                            >
+                              <Link to={link.href}>{link.label}</Link>
+                            </NavigationMenuLink>
+                          </NavigationMenuItem>
+                        )}
+                        {link.role === data?.data?.role && (
+                          <NavigationMenuItem>
+                            <NavigationMenuLink
+                              asChild
+                              className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                            >
+                              <Link to={link.href}>{link.label}</Link>
+                            </NavigationMenuLink>
+                          </NavigationMenuItem>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </NavigationMenuList>
+                </NavigationMenu>
             </PopoverContent>
           </Popover>
         </div>
