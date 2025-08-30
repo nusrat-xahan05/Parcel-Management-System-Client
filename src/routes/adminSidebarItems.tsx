@@ -1,3 +1,4 @@
+import AllParcels from "@/pages/Admin/AllParcels";
 import AllUsers from "@/pages/Admin/AllUsers";
 import type { ISidebarItem } from "@/types";
 import { lazy } from "react";
@@ -38,11 +39,11 @@ export const adminSidebarItems: ISidebarItem[] = [
     {
         title: "Parcel Management",
         items: [
-            // {
-            //     title: "Get All Users",
-            //     url: "/admin/all-users",
-            //     component: AddTourType
-            // }
+            {
+                title: "All Parcel",
+                url: "/admin/all-parcels",
+                component: AllParcels
+            }
         ],
     },
 ]

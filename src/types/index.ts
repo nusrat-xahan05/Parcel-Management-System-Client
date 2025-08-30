@@ -4,6 +4,7 @@ export type { ILogin } from './auth.type';
 export type { ISendOtp, IVerifyOtp } from './otp.type';
 export type { TRole } from './user.type';
 export type { IUser } from './user.type';
+export type { IParcel } from './parcel.type';
 
 interface TMeta {
     page: number;

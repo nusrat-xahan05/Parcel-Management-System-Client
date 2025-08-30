@@ -1,48 +1,45 @@
-import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, } from "@/components/ui/pagination";
 import { useState } from "react";
-import { useAllUserInfoQuery } from "@/redux/features/user/user.api";
-import type { IUser } from "@/types";
-import { Eye } from "lucide-react";
+import { useAllParcelInfoQuery } from "@/redux/features/parcel/parcel.api";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import type { IParcel } from "@/types";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
+import { Eye } from "lucide-react";
 
-export default function AllUsers() {
+export default function AllParcels() {
     const [currentPage, setCurrentPage] = useState(1);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [limit, setLimit] = useState(5);
 
-    const { data } = useAllUserInfoQuery({ page: currentPage, limit });
-
+    const { data } = useAllParcelInfoQuery({ page: currentPage, limit });
     const totalPage = data?.meta?.totalPage || 1;
 
     return (
         <div className="w-full max-w-7xl mx-auto px-5">
             <div className="flex justify-between my-8">
-                <h1 className="text-xl font-semibold">User List</h1>
+                <h1 className="text-xl font-semibold">Parcel List</h1>
             </div>
             <div className="border border-muted rounded-md">
                 <Table className="table-fixed w-full">
                     <TableHeader className="bg-primary/50">
                         <TableRow>
-                            <TableHead className="w-1/5 text-center">Email</TableHead>
-                            <TableHead className="w-1/5 text-center">Role</TableHead>
+                            <TableHead className="w-1/5 text-center">Parcel Id</TableHead>
+                            <TableHead className="w-1/5 text-center">Sender</TableHead>
+                            <TableHead className="w-1/5 text-center">Receiver</TableHead>
                             <TableHead className="w-1/5 text-center">Status</TableHead>
-                            <TableHead className="w-1/5 text-center">Verification</TableHead>
                             <TableHead className="w-1/5 text-center">View Details</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {data?.data?.map((item: IUser, idx: number) => (
+                        {data?.data?.map((item: IParcel, idx: number) => (
                             <TableRow key={idx}>
-                                <TableCell className="w-1/5 text-center">{item?.email}</TableCell>
-                                <TableCell className="w-1/5 text-center">{item?.role}</TableCell>
-                                <TableCell className="w-1/5 text-center">{item?.userStatus}</TableCell>
+                                <TableCell className="w-1/5 text-center">{item?._id}</TableCell>
+                                <TableCell className="w-1/5 text-center">{item?.senderEmail}</TableCell>
+                                <TableCell className="w-1/5 text-center">{item?.receiverEmail}</TableCell>
+                                <TableCell className="w-1/5 text-center">{item?.currentStatus}</TableCell>
                                 <TableCell className="w-1/5 text-center">
-                                    {item?.isVerified ? "Yes" : "No"}
-                                </TableCell>
-                                <TableCell className="w-1/5 text-center">
-                                    <Button size="sm"><Link to={`/admin/user/${item._id}`}><Eye></Eye></Link></Button>
+                                    <Button size="sm"><Link to={`/admin/parcel/${item._id}`}><Eye></Eye></Link></Button>
                                 </TableCell>
                             </TableRow>
                         ))}

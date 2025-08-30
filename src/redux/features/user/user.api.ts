@@ -3,16 +3,8 @@ import type { IResponse, IUser } from "@/types";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        // register: builder.mutation<IResponse<IUser>, IUser>({
-        //     query: (userRegisterInfo) => ({
-        //         url: "/user/register",
-        //         method: "POST",
-        //         data: userRegisterInfo,
-        //     }),
-        // }),
-
         // ------ GET ALL USERS
-        allUserInfo: builder.query({
+        allUserInfo: builder.query<IResponse<IUser[]>, { page?: number; limit?: number }>({
             query: () => ({
                 url: "/user/all-users",
                 method: "GET",

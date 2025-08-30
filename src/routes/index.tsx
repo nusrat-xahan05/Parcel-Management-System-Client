@@ -17,6 +17,7 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./AdminSidebarItems";
 import Unauthorized from "@/pages/Unauthorized";
 import UserDetails from "@/pages/Admin/UserDetails";
+import ParcelDetails from "@/pages/Admin/ParcelDetails";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 Component: UserDetails,
                 path: 'user/:id'
+            },
+            {
+                Component: ParcelDetails,
+                path: 'parcel/:id'
             },
             ...generateRoutes(adminSidebarItems),
         ],
