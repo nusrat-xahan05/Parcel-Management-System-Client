@@ -8,6 +8,7 @@ import HamburgerMenu from "@/assets/icons/HamburgerMenu"
 import React from "react"
 import { ModeToggle } from "./ModeToggler"
 import Logo from "@/assets/icons/Logo"
+import { Role } from "@/constants/User"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -15,7 +16,10 @@ const navigationLinks = [
   { href: "/about", label: "About", role: "PUBLIC" },
   { href: "/services", label: "Services", role: "PUBLIC" },
   { href: "/faq", label: "FAQ", role: "PUBLIC" },
-  { href: "/contact", label: "Contact", role: "PUBLIC" }
+  { href: "/contact", label: "Contact", role: "PUBLIC" },
+  { href: "/admin", label: "Dashboard", role: Role.ADMIN },
+  { href: "/admin", label: "Dashboard", role: Role.SENDER },
+  { href: "/admin", label: "Dashboard", role: Role.RECEIVER },
 ]
 
 export default function Navbar() {

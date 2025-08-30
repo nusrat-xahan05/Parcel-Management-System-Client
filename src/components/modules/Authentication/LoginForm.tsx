@@ -30,15 +30,12 @@ export function LoginForm({
         try {
             const res = await login(loginInfo).unwrap();
 
-            console.log('login info: ', res);
             if (res.success) {
                 toast.success("Logged in successfully");
                 navigate("/");
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            console.log(err);
-
             if (err.data.message === "User Is Not Verified") {
                 toast.error("Your account is not verified");
                 navigate("/verify", { state: data.email });

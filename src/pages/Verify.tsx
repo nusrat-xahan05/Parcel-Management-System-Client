@@ -8,14 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Dot } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "sonner";
 import z from "zod";
 
 
 const FormSchema = z.object({
     pin: z.string().min(6, {
-        message: "Your one-time password must be 6 characters.",
+        message: "Your one-time password must be 6 characters",
     }),
 })
 
@@ -160,6 +160,9 @@ export default function Verify() {
                         <CardFooter className="flex justify-end">
                             <Button onClick={handleSendOtp} className="w-[300px]">Confirm</Button>
                         </CardFooter>
+                        <Link to="/" className="text-center underline underline-offset-4">
+                            Back to Home
+                        </Link>
                     </Card>
                 )
             }

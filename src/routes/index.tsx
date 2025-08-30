@@ -1,5 +1,7 @@
 import App from "@/App";
+import DashboardLayout from "@/components/layout/DashboardLayout";
 import FAQ from "@/components/modules/FAQ";
+import { Role } from "@/constants/User";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import HomePage from "@/pages/HomePage";
@@ -8,7 +10,13 @@ import Register from "@/pages/Register";
 import { Services } from "@/pages/Services";
 import TrackOrder from "@/pages/TrackOrder";
 import Verify from "@/pages/Verify";
-import { createBrowserRouter } from "react-router";
+import type { TRole } from "@/types";
+import { generateRoutes } from "@/utils/generateRoutes";
+import { withAuth } from "@/utils/withAuth";
+import { createBrowserRouter, Navigate } from "react-router";
+import { adminSidebarItems } from "./AdminSidebarItems";
+import Unauthorized from "@/pages/Unauthorized";
+import UserDetails from "@/pages/Admin/UserDetails";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +50,18 @@ export const router = createBrowserRouter([
         ]
     },
     {
+        Component: withAuth(DashboardLayout, Role.ADMIN as TRole),
+        path: "/admin",
+        children: [
+            { index: true, element: <Navigate to="/admin/analytics" /> },
+            {
+                Component: UserDetails,
+                path: 'user/:id'
+            },
+            ...generateRoutes(adminSidebarItems),
+        ],
+    },
+    {
         Component: Login,
         path: "/login",
     },
@@ -52,5 +72,9 @@ export const router = createBrowserRouter([
     {
         Component: Verify,
         path: "/verify",
+    },
+    {
+        Component: Unauthorized,
+        path: "/unauthorized",
     },
 ]);
