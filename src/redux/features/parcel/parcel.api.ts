@@ -40,7 +40,16 @@ export const parcelApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['PARCEL']
         }),
+
+        // ------ TRACK PARCEL
+        trackParcel: builder.query<IResponse<IParcel>, string>({
+            query: (id: string) => ({
+                url: `/parcel/track-parcel/${id}`,
+                method: "GET",
+            }),
+            providesTags: ["PARCEL"],
+        }),
     }),
 });
 
-export const { useCreateParcelMutation, useAllParcelInfoQuery, useSingleParcelInfoQuery, useUpdateParcelInfoMutation } = parcelApi;
+export const { useCreateParcelMutation, useAllParcelInfoQuery, useSingleParcelInfoQuery, useUpdateParcelInfoMutation, useLazyTrackParcelQuery } = parcelApi;

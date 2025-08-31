@@ -8,7 +8,7 @@ import HomePage from "@/pages/HomePage";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import { Services } from "@/pages/Services";
-import TrackOrder from "@/pages/TrackOrder";
+import TrackParcel from "@/pages/TrackParcel";
 import Verify from "@/pages/Verify";
 import type { TRole } from "@/types";
 import { generateRoutes } from "@/utils/generateRoutes";
@@ -45,8 +45,8 @@ export const router = createBrowserRouter([
                 path: "/contact",
             },
             {
-                Component: TrackOrder,
-                path: "/track",
+                Component: TrackParcel,
+                path: "/track-parcel",
             },
         ]
     },
