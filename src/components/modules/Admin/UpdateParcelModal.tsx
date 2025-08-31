@@ -47,7 +47,7 @@ export function UpdateParcelModal({ parcelInfo }: ChildProps) {
     const parcelStatuses: TParcelStatus[] = ["APPROVED", "DISPATCHED", "IN TRANSIT", "OUT FOR DELIVERY", "DELIVERED", "CONFIRMED", "CANCELLED", "BLOCKED"];
     const [open, setOpen] = useState(false);
 
-    const { data: allUsers } = useAllUserInfoQuery({});
+    const { data: allUsers, isLoading: agentLoading } = useAllUserInfoQuery({});
     const agents = allUsers?.data?.filter((user: IUser) => user.role === "AGENT") || [];
 
     const [updateParcelInfo] = useUpdateParcelInfoMutation();
@@ -124,7 +124,10 @@ export function UpdateParcelModal({ parcelInfo }: ChildProps) {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Assign Agent</FormLabel>
-                                            <Select onValueChange={field.onChange} defaultValue={parcelInfo.agentId}>
+                                            <Select 
+                                                onValueChange={field.onChange} 
+                                                defaultValue={parcelInfo.agentId}
+                                                disabled={agentLoading}>
                                                 <FormControl>
                                                     <SelectTrigger>
                                                         <SelectValue placeholder="Select an Agent" />

@@ -3,6 +3,16 @@ import type { IParcel, IResponse } from "@/types";
 
 export const parcelApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
+        // ------ CREATE A PARCEL
+        createParcel: builder.mutation<IResponse<IParcel>, IParcel>({
+            query: (parcelCreateInfo) => ({
+                url: "/parcel/create-parcel",
+                method: "POST",
+                data: parcelCreateInfo,
+            }),
+            invalidatesTags: ['PARCEL']
+        }),
+
         // ------ GET ALL PARCELS
         allParcelInfo: builder.query({
             query: () => ({
@@ -33,4 +43,4 @@ export const parcelApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useAllParcelInfoQuery, useSingleParcelInfoQuery, useUpdateParcelInfoMutation } = parcelApi;
+export const { useCreateParcelMutation, useAllParcelInfoQuery, useSingleParcelInfoQuery, useUpdateParcelInfoMutation } = parcelApi;

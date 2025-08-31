@@ -1,4 +1,4 @@
-import UserMenu from "@/components/user-menu"
+import ProfileMenu from "@/components/ProfileMenu"
 import { Button } from "@/components/ui/button"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, } from "@/components/ui/navigation-menu"
 import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popover"
@@ -68,7 +68,7 @@ export default function Navbar() {
           </div>
 
           {data?.data?.email && !isLoading && (
-            <UserMenu userInfo={data.data} />
+            <ProfileMenu userInfo={data.data} />
           )}
           {!data?.data?.email && (
             <Button asChild className="text-sm">

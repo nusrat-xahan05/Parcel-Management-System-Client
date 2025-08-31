@@ -1,3 +1,4 @@
+import CreateParcel from "@/pages/Admin&User/CreateParcel";
 import AllParcels from "@/pages/Admin/AllParcels";
 import AllUsers from "@/pages/Admin/AllUsers";
 import type { ISidebarItem } from "@/types";
@@ -43,6 +44,11 @@ export const adminSidebarItems: ISidebarItem[] = [
                 title: "All Parcel",
                 url: "/admin/all-parcels",
                 component: AllParcels
+            },
+            {
+                title: "Create Parcel",
+                url: "/admin/create-parcel",
+                component: CreateParcel
             }
         ],
     },

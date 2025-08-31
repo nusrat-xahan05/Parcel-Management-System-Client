@@ -1,3 +1,23 @@
+export const ServiceType = {
+    REGULAR: "REGULAR",
+    SAME_DAY: "SAME DAY"
+}
+
+export const DeliveryType = {
+    HOME: "HOME",
+    ADDRESS_POINT: "ADDRESS POINT"
+}
+
+export const ParcelType = {
+    FRAGILE: "FRAGILE",
+    CLOTHES: "CLOTHES",
+    ELECTRONICS: "ELECTRONICS",
+    FOOD_ITEMS: "FOOD ITEMS",
+    MEDICAL: "MEDICAL",
+    DOCUMENTS: "DOCUMENTS",
+    OTHERS: "OTHERS"
+}
+
 export const parcelStatus = {
     REQUESTED: "REQUESTED",
     APPROVED: "APPROVED",

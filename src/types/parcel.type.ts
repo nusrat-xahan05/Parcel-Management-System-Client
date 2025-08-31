@@ -1,4 +1,4 @@
-import type { IUser, TRole } from "./user.type";
+import type { TRole } from "./user.type";
 
 export type TServiceType = "REGULAR" | "SAME DAY";
 export type TDeliveryType = "HOME" | "ADDRESS POINT";
@@ -23,7 +23,7 @@ export interface IParcel {
     deliveryType?: TDeliveryType;
     parcelType?: TParcelType;
     senderEmail?: string;
-    senderId?: string | IUser;
+    senderId?: string;
     receiverName?: string;
     receiverEmail?: string;
     receiverPhone: string;

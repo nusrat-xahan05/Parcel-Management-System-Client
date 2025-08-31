@@ -10,7 +10,7 @@ type ChildProps = {
   userInfo: IUser
 }
 
-export default function UserMenu({ userInfo }: ChildProps) {
+export default function ProfileMenu({ userInfo }: ChildProps) {
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
 

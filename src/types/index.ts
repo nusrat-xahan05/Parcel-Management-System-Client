@@ -6,6 +6,15 @@ export type { TRole } from './user.type';
 export type { IUser } from './user.type';
 export type { IParcel } from './parcel.type';
 
+export interface ISidebarItem {
+    title: string;
+    items: {
+        title: string;
+        url: string;
+        component: ComponentType;
+    }[];
+}
+
 interface TMeta {
     page: number;
     limit: number;
@@ -19,13 +28,4 @@ export interface IResponse<T> {
     message: string;
     data?: T;
     meta?: TMeta
-}
-
-export interface ISidebarItem {
-    title: string;
-    items: {
-        title: string;
-        url: string;
-        component: ComponentType;
-    }[];
 }
