@@ -9,8 +9,9 @@ import { Link } from "react-router";
 
 export default function AllUsers() {
     const [currentPage, setCurrentPage] = useState(1);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
     const [limit, setLimit] = useState(5);
+    console.log(setLimit);
 
     const { data } = useAllUserInfoQuery({ page: currentPage, limit });
 

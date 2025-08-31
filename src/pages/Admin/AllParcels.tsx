@@ -9,8 +9,9 @@ import { Eye } from "lucide-react";
 
 export default function AllParcels() {
     const [currentPage, setCurrentPage] = useState(1);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const [limit, setLimit] = useState(5);
+    console.log(setLimit);
 
     const { data } = useAllParcelInfoQuery({ page: currentPage, limit });
     const totalPage = data?.meta?.totalPage || 1;

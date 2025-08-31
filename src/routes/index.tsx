@@ -14,7 +14,7 @@ import type { TRole } from "@/types";
 import { generateRoutes } from "@/utils/generateRoutes";
 import { withAuth } from "@/utils/withAuth";
 import { createBrowserRouter, Navigate } from "react-router";
-import { adminSidebarItems } from "./AdminSidebarItems";
+import { adminSidebarItems } from "./adminSidebarItems";
 import Unauthorized from "@/pages/Unauthorized";
 import UserDetails from "@/pages/Admin/UserDetails";
 import ParcelDetails from "@/pages/Admin/ParcelDetails";

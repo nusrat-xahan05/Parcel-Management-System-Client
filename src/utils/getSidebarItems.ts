@@ -1,7 +1,7 @@
 import { Role } from "@/constants/User";
-import { adminSidebarItems } from "@/routes/AdminSidebarItems";
+import { adminSidebarItems } from "@/routes/adminSidebarItems";
 import { receiverSidebarItems } from "@/routes/receiverSidebarItems";
-import { senderSidebarItems } from "@/routes/SenderSidebarItems";
+import { senderSidebarItems } from "@/routes/senderSidebarItems";
 import type { TRole } from "@/types";
 
 export const getSidebarItems = (userRole: TRole) => {
