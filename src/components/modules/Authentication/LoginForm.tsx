@@ -19,29 +19,31 @@ export function LoginForm({
     ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
     const navigate = useNavigate();
-    const form = useForm();
     const [login] = useLoginMutation();
 
+    const form = useForm();
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         const loginInfo = {
             email: data.email.toLowerCase(),
             password: data.password
         }
+
+        const toastId = toast.loading("Processing...");
         try {
             const res = await login(loginInfo).unwrap();
 
             if (res.success) {
-                toast.success("Logged in successfully");
+                toast.success(res.message, { id: toastId });
                 navigate("/");
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             if (err.data.message === "User Is Not Verified") {
-                toast.error("Your account is not verified");
+                toast.error(err.data.message, { id: toastId });
                 navigate("/verify", { state: data.email });
             }
             else{
-                toast.error(`${err.data.message}`);
+                toast.error(err.data.message, { id: toastId });
             }
         }
         form.reset();

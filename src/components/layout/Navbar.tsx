@@ -18,8 +18,8 @@ const navigationLinks = [
   { href: "/faq", label: "FAQ", role: "PUBLIC" },
   { href: "/contact", label: "Contact", role: "PUBLIC" },
   { href: "/admin", label: "Dashboard", role: Role.ADMIN },
-  { href: "/admin", label: "Dashboard", role: Role.SENDER },
-  { href: "/admin", label: "Dashboard", role: Role.RECEIVER },
+  { href: "/sender", label: "Dashboard", role: Role.SENDER },
+  { href: "/receiver", label: "Dashboard", role: Role.RECEIVER },
 ]
 
 export default function Navbar() {
@@ -90,6 +90,7 @@ export default function Navbar() {
                   <NavigationMenuList className="gap-2 grid">
                     {navigationLinks.map((link, index) => (
                       <React.Fragment key={index}>
+                        console.log('from NavLink: ', link);
                         {link.role === "PUBLIC" && (
                           <NavigationMenuItem>
                             <NavigationMenuLink

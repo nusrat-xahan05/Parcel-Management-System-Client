@@ -67,14 +67,14 @@ export function UpdateParcelModal({ parcelInfo }: ChildProps) {
             currentStatus: data.currentStatus
         };
 
+        const toastId = toast.loading("Updating...");
         try {
             const res = await updateParcelInfo({ parcelId: parcelInfo._id, parcelData: updatedInfo }).unwrap();
-            toast.success(res.message);
+            toast.success(res.message, { id: toastId });
             setOpen(false);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            console.error(err);
-            toast.error(`${err.data.message}`);
+            toast.error(err.data.message, { id: toastId });
         }
     };
 

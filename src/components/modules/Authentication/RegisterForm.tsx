@@ -62,16 +62,16 @@ export function RegisterForm({
             role: data.role
         };
 
+        const toastId = toast.loading("Processing...");
         try {
             const res = await register(userInfo).unwrap();
             if (res.success) {
-                toast.success("User created successfully");
+                toast.success(res.message, { id: toastId });
                 navigate("/verify");
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            console.error(err);
-            toast.error(`${err.data.message}`);
+            toast.error(err.data.message, { id: toastId });
         }
     };
 

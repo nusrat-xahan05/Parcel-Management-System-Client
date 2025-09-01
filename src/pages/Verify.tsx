@@ -20,13 +20,14 @@ const FormSchema = z.object({
 })
 
 export default function Verify() {
-    const [sendOtp] = useSendOtpMutation();
-    const [verifyOtp] = useVerifyOtpMutation();
     const location = useLocation();
     const navigate = useNavigate();
     const [email] = useState(location.state);
     const [confirmed, setConfirmed] = useState(false);
     const [timer, setTimer] = useState(60);
+
+    const [sendOtp] = useSendOtpMutation();
+    const [verifyOtp] = useVerifyOtpMutation();
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -36,23 +37,24 @@ export default function Verify() {
     })
 
     const handleSendOtp = async () => {
-        const toastId = toast.loading("Sending OTP");
+        const toastId = toast.loading("Sending OTP...");
 
         try {
             const res = await sendOtp({ email: email }).unwrap();
             if (res.success) {
-                toast.success(`${res.message}`, { id: toastId });
+                toast.success(res.message, { id: toastId });
                 setConfirmed(true);
                 setTimer(5);
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            toast.error(`${err.data.message}`, { id: toastId });
+            toast.error(err.data.message, { id: toastId });
         }
     };
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-        const toastId = toast.loading("Verifying OTP");
+        const toastId = toast.loading("Verifying OTP...");
+        
         const userInfo = {
             email,
             otp: data.pin,
@@ -61,13 +63,13 @@ export default function Verify() {
         try {
             const res = await verifyOtp(userInfo).unwrap();
             if (res.success) {
-                toast.success(`${res.message}`, { id: toastId });
+                toast.success(res.message, { id: toastId });
                 setConfirmed(true);
                 navigate("/login");
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            toast.error(`${err.data.message}`, { id: toastId });
+            toast.error(err.data.message, { id: toastId });
         }
     };
 

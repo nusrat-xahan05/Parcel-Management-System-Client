@@ -18,6 +18,8 @@ const trackParcelSchema = z.object({
 
 
 export default function TrackParcel() {
+    const [trigger, { data: parcelData, isFetching, error: trackingError }] = useLazyTrackParcelQuery();
+
     const form = useForm<z.infer<typeof trackParcelSchema>>({
         resolver: zodResolver(trackParcelSchema),
         defaultValues: {
@@ -25,10 +27,7 @@ export default function TrackParcel() {
         },
     });
 
-    const [trigger, { data: parcelData, isFetching, error: trackingError }] = useLazyTrackParcelQuery();
-
     const onSubmit = async (data: z.infer<typeof trackParcelSchema>) => {
-        console.log('track data: ', data.id);
         trigger(data.id);
     };
 
@@ -57,7 +56,7 @@ export default function TrackParcel() {
                             )}
                         />
                         <Button type="submit" disabled={disableBtn}>
-                            {isFetching ? "Loading..." : "Submit"}
+                            {isFetching ? "Searching..." : "Submit"}
                         </Button>
                     </form>
                 </Form>

@@ -163,7 +163,7 @@ export default function CreateParcel() {
             codAmount: Number(data.codAmount)
         };
 
-        const toastId = toast.loading("Creating Parcel....");
+        const toastId = toast.loading("Processing....");
         try {
             const res = await createParcel(parcelData as IParcel).unwrap();
 

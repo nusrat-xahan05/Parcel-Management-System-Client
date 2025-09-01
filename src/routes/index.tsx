@@ -18,11 +18,14 @@ import { adminSidebarItems } from "./adminSidebarItems";
 import Unauthorized from "@/pages/Unauthorized";
 import UserDetails from "@/pages/Admin/UserDetails";
 import ParcelDetails from "@/pages/Admin/ParcelDetails";
+import { senderSidebarItems } from "./senderSidebarItems";
+import ErrorPage from "@/pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         Component: App,
         path: "/",
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 Component: HomePage,
@@ -67,6 +70,18 @@ export const router = createBrowserRouter([
         ],
     },
     {
+        Component: withAuth(DashboardLayout, Role.SENDER as TRole),
+        path: "/sender",
+        children: [
+            { index: true, element: <Navigate to="/sender/analytics" /> },
+            {
+                Component: ParcelDetails,
+                path: 'parcel/:id'
+            },
+            ...generateRoutes(senderSidebarItems),
+        ],
+    },
+    {
         Component: Login,
         path: "/login",
     },
@@ -81,5 +96,5 @@ export const router = createBrowserRouter([
     {
         Component: Unauthorized,
         path: "/unauthorized",
-    },
+    }
 ]);
