@@ -43,7 +43,7 @@ export default function ParcelDetails() {
 
                         {/* Parcel Details Card */}
                         <Card className="border-l-4 border-l-primary shadow-lg rounded-2xl p-7">
-                            <CardHeader className="flex justify-between items-center">
+                            <CardHeader className="flex flex-wrap justify-between items-center">
                                 <CardTitle className="text-2xl font-semibold">
                                     Parcel Details - {data?.data?.trackingId}
                                 </CardTitle>
@@ -56,7 +56,7 @@ export default function ParcelDetails() {
 
                             <CardContent className="space-y-4">
                                 {/* Parcel Info */}
-                                <div className="grid md:grid-cols-2 gap-4">
+                                <div className="grid sm:grid-cols-2 gap-4">
                                     <div>
                                         <h3 className="text-base font-medium text-muted-foreground mb-1.5">Parcel Information</h3>
                                         <p className="text-sm">Parcel Type: {data?.data?.parcelType}</p>
@@ -73,7 +73,7 @@ export default function ParcelDetails() {
                                 </div>
 
                                 <Separator />
-                                <div className="grid md:grid-cols-2 gap-4">
+                                <div className="grid sm:grid-cols-2 gap-4">
                                     <div>
                                         <h3 className="text-base font-medium text-muted-foreground mb-1.5">Sender Information</h3>
                                         <p className="text-sm">Email: {data?.data?.senderEmail}</p>
@@ -88,7 +88,7 @@ export default function ParcelDetails() {
 
                                 <Separator />
                                 {/* Addresses */}
-                                <div className="grid md:grid-cols-2 gap-4">
+                                <div className="grid sm:grid-cols-2 gap-4">
                                     <div>
                                         <h3 className="text-base font-medium text-muted-foreground mb-1.5">Pickup Address</h3>
                                         <p className="text-sm">{data?.data?.pickUpAddress}</p>
@@ -125,7 +125,7 @@ export default function ParcelDetails() {
 
                                 <Separator />
                                 {/* Dates */}
-                                <div className="grid md:grid-cols-2 gap-4">
+                                <div className="grid sm:grid-cols-2 gap-4">
                                     <p className="text-base font-medium text-muted-foreground mb-1.5">Created At: <span className="text-sm text-foreground">{data?.data?.createdAt}</span></p>
                                     <p className="text-base font-medium text-muted-foreground mb-1.5">Last Updated: <span className="text-sm text-foreground">{data?.data?.updatedAt}</span></p>
                                 </div>

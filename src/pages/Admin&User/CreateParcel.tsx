@@ -173,10 +173,10 @@ export default function CreateParcel() {
             }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            if(err.data.message === 'Zod Error'){
-                toast.error(`${err.data.errorSources[0].message}`, { id: toastId });
+            if(err?.data?.message === 'Zod Error'){
+                toast.error(err.data.errorSources[0].message, { id: toastId });
             }
-            toast.error(`${err.data.message}`, { id: toastId });
+            toast.error(err.data.message, { id: toastId });
         }
     };
 
@@ -190,8 +190,8 @@ export default function CreateParcel() {
 
             {
                 !userLoading && (
-                    <div className="w-full max-w-4xl mx-auto px-5 mt-16">
-                        <Card className="border-l-4 border-l-primary shadow-lg rounded-2xl p-7">
+                    <div className="w-full max-w-4xl mx-auto px-1 sm:px-5 mt-16">
+                        <Card className="border-l-4 border-l-primary shadow-lg rounded-2xl p-1.5 sm:p-7 py-10">
                             <CardHeader className="flex gap-6 mb-3.5">
                                 <img className="size-14" src={parcelImg} alt="Parcel Image" />
                                 <div>
@@ -209,7 +209,7 @@ export default function CreateParcel() {
                                     >
                                         <h3 className="text-lg font-medium text-muted-foreground mb-1.5">Parcel Information</h3>
                                         <Separator></Separator>
-                                        <div className="grid grid-cols-4 gap-6 mt-2">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
                                             <FormField
                                                 control={form.control}
                                                 name="serviceType"
@@ -300,7 +300,7 @@ export default function CreateParcel() {
 
                                         <h3 className="text-lg font-medium text-muted-foreground mb-1.5 mt-6">Cash On Delivery Amount</h3>
                                         <Separator></Separator>
-                                        <div className="grid grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                             <FormField
                                                 control={form.control}
                                                 name="codAmount"
@@ -319,7 +319,7 @@ export default function CreateParcel() {
 
                                         <h3 className="text-lg font-medium text-muted-foreground mb-1.5 mt-6">Receiver Information</h3>
                                         <Separator></Separator>
-                                        <div className="grid grid-cols-2 gap-6 items-start">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
                                             <FormField
                                                 control={form.control}
                                                 name="receiverName"
@@ -388,7 +388,7 @@ export default function CreateParcel() {
 
                                         <h3 className="text-lg font-medium text-muted-foreground mb-1.5 mt-6">Sender Information</h3>
                                         <Separator></Separator>
-                                        <div className="grid grid-cols-2 gap-6 items-start">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
                                             <FormField
                                                 control={form.control}
                                                 name="senderEmail"

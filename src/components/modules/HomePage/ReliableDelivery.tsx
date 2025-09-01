@@ -3,12 +3,14 @@ import serviceImg from '@/assets/images/Service.png';
 export default function ReliableDelivery() {
     return (
         <div className="bg-foreground">
-            <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-14 items-center">
+            <div className="mx-auto max-w-7xl md:grid md:grid-cols-2 md:items-center px-4 md:px-6 md:gap-14">
                 {/* Left Side Image */}
-                <img src={serviceImg} alt="Parcel Delivery"/>
+                <div>
+                    <img className='w-[70%] md:w-full text-center mx-auto' src={serviceImg} alt="Parcel Delivery" />
+                </div>
 
                 {/* Right Side Content */}
-                <div>
+                <div className='pb-20 md:pb-0 py-0 md:py-14'>
                     <h3 className="text-[32px] font-extrabold pb-8 text-background"><span className='text-primary'>Fast, Secure & Reliable</span> Deliveries</h3>
                     <p className="text-accent mb-6">
                         At <span className="font-semibold">ParcelRunner</span>, we ensure that

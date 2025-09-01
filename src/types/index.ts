@@ -5,6 +5,7 @@ export type { ISendOtp, IVerifyOtp } from './otp.type';
 export type { TRole } from './user.type';
 export type { IUser } from './user.type';
 export type { IParcel } from './parcel.type';
+export type { IAllUserQueryParams } from './user.type';
 
 export interface ISidebarItem {
     title: string;

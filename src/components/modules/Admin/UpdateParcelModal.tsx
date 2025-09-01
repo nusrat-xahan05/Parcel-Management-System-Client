@@ -91,7 +91,7 @@ export function UpdateParcelModal({ parcelInfo }: ChildProps) {
                 </DialogHeader>
                 <Form {...form}>
                     <form className="space-y-6" id="add-tour-type" onSubmit={form.handleSubmit(onSubmit)}>
-                        <div className="grid grid-cols-2 gap-6">
+                        <div className="grid sm:grid-cols-2 gap-6">
                             <FormField
                                 control={form.control}
                                 name="currentStatus"

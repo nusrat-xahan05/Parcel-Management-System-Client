@@ -52,11 +52,11 @@ export default function MyParcels() {
                         <div className="flex justify-between my-8">
                             <h1 className="text-xl font-semibold">My Created Parcel List</h1>
                         </div>
-                        <div className="border border-muted rounded-md">
-                            <Table className="table-fixed w-full">
+                        <div className="overflow-x-auto w-full border border-muted rounded-md">
+                            <Table className="table-fixed w-full min-w-[600px]">
                                 <TableHeader className="bg-primary/50">
                                     <TableRow>
-                                        <TableHead className="w-[25%] text-center">Parcel Id</TableHead>
+                                        <TableHead className="hidden lg:inline-block mt-0 lg:mt-1.5 w-[25%] text-center">Parcel Id</TableHead>
                                         <TableHead className="w-[25%] text-center">Receiver</TableHead>
                                         <TableHead className="w-[20%] text-center">Status</TableHead>
                                         <TableHead className="w-[15%] text-center">Cancel</TableHead>
@@ -66,7 +66,7 @@ export default function MyParcels() {
                                 <TableBody>
                                     {data?.data?.map((item: IParcel, idx: number) => (
                                         <TableRow key={idx}>
-                                            <TableCell className="w-[25%] text-center">{item?._id}</TableCell>
+                                            <TableCell className="hidden lg:inline-block mt-0 lg:mt-1.5 w-[25%] text-center">{item?._id}</TableCell>
                                             <TableCell className="w-[25%] text-center">{item?.receiverEmail}</TableCell>
                                             <TableCell className="w-[20%] text-center">{item?.currentStatus}</TableCell>
                                             <TableCell className="w-[15%] text-center">

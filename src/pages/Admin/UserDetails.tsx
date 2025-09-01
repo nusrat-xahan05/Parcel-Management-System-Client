@@ -1,5 +1,5 @@
 import LoadingSpinner from "@/components/layout/LoadingSpinner/LoadingSpinner";
-import { UpdateUserModal } from "@/components/modules/Admin/UpdateUserModal";
+import { UpdateUserModal } from "@/components/modules/Admin/User/UpdateUserModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useSingleUserInfoQuery } from "@/redux/features/user/user.api";
@@ -37,14 +37,14 @@ export default function UserDetails() {
                         {/* User Details Card */}
                         <Card className="border-l-4 border-l-primary shadow-lg rounded-2xl p-7">
                             <CardHeader className="flex gap-4 items-center">
-                                <CircleUserRound className="size-16" />
+                                <CircleUserRound className="size-12 sm:size-16" />
                                 <div>
-                                    <CardTitle className="text-2xl font-semibold">{data?.data?.name}</CardTitle>
+                                    <CardTitle className="text-xl sm:text-2xl font-semibold">{data?.data?.name}</CardTitle>
                                     <p className="text-lg text-muted-foreground">{data?.data?.email}</p>
                                 </div>
                             </CardHeader>
                             <CardContent className="space-y-4 pl-10">
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
                                         <p className="text-base font-medium text-muted-foreground">Role</p>
                                         <p className="text-base">{data?.data?.role}</p>

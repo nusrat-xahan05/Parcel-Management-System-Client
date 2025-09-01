@@ -3,17 +3,33 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, } from "@/components/ui/pagination";
 import { useState } from "react";
 import { useAllUserInfoQuery } from "@/redux/features/user/user.api";
-import type { IUser } from "@/types";
+import type { IAllUserQueryParams, IUser } from "@/types";
 import { Eye } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import LoadingSpinner from "@/components/layout/LoadingSpinner/LoadingSpinner";
+import UserFilter from "@/components/modules/Admin/User/UserFilter";
 
 export default function AllUsers() {
+    const [searchParams] = useSearchParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit, setLimit] = useState(5);
+    const [limit, setLimit] = useState(8);
     console.log(setLimit);
 
-    const { data, isLoading: allUserLoading } = useAllUserInfoQuery({ page: currentPage, limit });
+    const role = searchParams.get("role") || undefined;
+    const userStatus = searchParams.get("userStatus") || undefined;
+    const agentStatus = searchParams.get("agentStatus") || undefined;
+    const email = searchParams.get("email") || undefined;
+
+    const queryParams: IAllUserQueryParams = {
+        role,
+        userStatus,
+        agentStatus,
+        email,
+        page: currentPage,
+        limit
+    };
+
+    const { data, isLoading: allUserLoading } = useAllUserInfoQuery(queryParams);
 
     const totalPage = data?.meta?.totalPage || 1;
 
@@ -28,11 +44,12 @@ export default function AllUsers() {
             {
                 !allUserLoading && (
                     <div className="w-full max-w-7xl mx-auto px-5">
+                        <UserFilter></UserFilter>
                         <div className="flex justify-between my-8">
                             <h1 className="text-xl font-semibold">User List</h1>
                         </div>
-                        <div className="border border-muted rounded-md">
-                            <Table className="table-fixed w-full">
+                        <div className="overflow-x-auto w-full border border-muted rounded-md">
+                            <Table className="table-fixed w-full min-w-[600px]">
                                 <TableHeader className="bg-primary/50">
                                     <TableRow>
                                         <TableHead className="w-1/5 text-center">Email</TableHead>

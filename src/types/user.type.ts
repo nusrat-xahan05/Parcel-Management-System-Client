@@ -16,3 +16,12 @@ export interface IUser {
     createdAt?: string;
     updatedAt?: string;
 }
+
+export interface IAllUserQueryParams {
+    email?: string;
+    role?: string;
+    userStatus?: string;
+    agentStatus?: string;
+    page?: number;
+    limit?: number;
+}

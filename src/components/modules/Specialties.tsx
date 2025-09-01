@@ -13,7 +13,7 @@ export default function Specialties() {
                 <h3 className="text-3xl font-extrabold pb-5 text-foreground">Our Specialties</h3>
                 <p className="text-foreground/50">We've easy-to-use and safe services with a passionate team of logistics experts to building a seamless professional delivery experience.</p>
             </div>
-            <div className="grid grid-cols-3 gap-5 mt-14">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-14">
                 <Card className="border-l-4 border-l-primary rounded-2xl shadow-md hover:shadow-lg transition">
                     <CardHeader>
                         <NotepadText className="size-12" />

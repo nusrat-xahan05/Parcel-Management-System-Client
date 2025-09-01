@@ -114,7 +114,7 @@ export function UpdateUserModal({ profileInfo }: ChildProps) {
                 </DialogHeader>
                 <Form {...form}>
                     <form className="space-y-6" id="add-tour-type" onSubmit={form.handleSubmit(onSubmit)}>
-                        <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -150,7 +150,7 @@ export function UpdateUserModal({ profileInfo }: ChildProps) {
                                 )}
                             />
                         </div>
-                        <div className="grid grid-cols-3 gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                             <FormField
                                 control={form.control}
                                 name="agentStatus"

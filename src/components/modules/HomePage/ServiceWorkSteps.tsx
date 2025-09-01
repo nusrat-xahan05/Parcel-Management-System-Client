@@ -3,7 +3,7 @@ import { Handshake, NotepadText, Send, Truck } from "lucide-react"
 export default function ServiceWorkSteps() {
     return (
         <div className="mx-auto max-w-7xl py-20 px-4 bg-secondary">
-            <div className="grid grid-cols-4 gap-5 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-5 text-center space-y-6 lg:space-y-0">
                 <div>
                     <NotepadText className="p-2 bg-primary size-11 rounded-md mx-auto"></NotepadText>
                     <h5 className="my-3 text-lg font-medium">Booking</h5>

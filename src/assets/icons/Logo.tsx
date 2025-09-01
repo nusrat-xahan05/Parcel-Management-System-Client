@@ -13,7 +13,7 @@ export default function Logo() {
                     fill="#FF4D00">    
                 </path>
             </svg>
-            <h2 className="text-3xl font-bold">ParcelRunner</h2>
+            <h2 className="text-xl sm:text-3xl font-bold">ParcelRunner</h2>
         </div>
     )
 }

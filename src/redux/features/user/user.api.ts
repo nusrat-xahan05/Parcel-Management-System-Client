@@ -1,13 +1,14 @@
 import { baseApi } from "@/redux/baseApi";
-import type { IResponse, IUser } from "@/types";
+import type { IAllUserQueryParams, IResponse, IUser } from "@/types";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         // ------ GET ALL USERS
-        allUserInfo: builder.query<IResponse<IUser[]>, { page?: number; limit?: number }>({
-            query: () => ({
+        allUserInfo: builder.query<IResponse<IUser[]>, IAllUserQueryParams>({
+            query: (params) => ({
                 url: "/user/all-users",
                 method: "GET",
+                params,
             }),
             providesTags: ["USER"],
         }),

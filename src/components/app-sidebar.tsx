@@ -1,10 +1,10 @@
 import * as React from "react"
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail, } from "@/components/ui/sidebar"
 import { Link } from "react-router"
-import Logo from "@/assets/icons/Logo"
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
 import { getSidebarItems } from "@/utils/getSidebarItems"
 import type { TRole } from "@/types"
+import OnlyLogo from "@/assets/icons/OnlyLogo"
 
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -18,7 +18,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <Link to='/'><Logo></Logo></Link>
+        <Link to='/'><OnlyLogo></OnlyLogo></Link>
       </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}

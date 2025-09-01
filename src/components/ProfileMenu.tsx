@@ -19,7 +19,6 @@ export default function ProfileMenu({ userInfo }: ChildProps) {
     dispatch(authApi.util.resetApiState());
   };
 
-  console.log('from UserIngo: ', userInfo);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

@@ -23,8 +23,7 @@ const navigationLinks = [
 ]
 
 export default function Navbar() {
-  const { data, isLoading } = useUserInfoQuery(undefined);
-
+  const { data, isLoading } = useUserInfoQuery();
 
   return (
     <header className="border-b px-4 md:px-6">
@@ -90,7 +89,6 @@ export default function Navbar() {
                   <NavigationMenuList className="gap-2 grid">
                     {navigationLinks.map((link, index) => (
                       <React.Fragment key={index}>
-                        console.log('from NavLink: ', link);
                         {link.role === "PUBLIC" && (
                           <NavigationMenuItem>
                             <NavigationMenuLink

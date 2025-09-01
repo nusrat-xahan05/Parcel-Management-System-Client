@@ -30,11 +30,11 @@ export default function About() {
                     <h3 className="text-3xl font-extrabold pb-5 text-primary">Our Mission</h3>
                     <p className="text-muted-foreground">Our mission is simple:{" "}<span className="italic">“To deliver trust, speed, and security with every parcel.”</span>{" "} We simplify logistics, ensure timely deliveries, and offer an exceptional experience for both senders and receivers.</p>
                 </div>
-                <div className="mt-14 grid grid-cols-3 gap-4">
-                    <div className="col-span-1">
+                <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="md:col-span-1 hidden md:block">
                         <img src={missionImg} alt="" />
                     </div>
-                    <div className="col-span-2">
+                    <div className="md:col-span-2">
                         <MissionMap></MissionMap>
                     </div>
                 </div>
