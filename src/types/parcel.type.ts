@@ -37,3 +37,19 @@ export interface IParcel {
     createdAt?: string;
     updatedAt?: string;
 }
+
+export interface ITrackParcelInfo {
+    trackingId?: string;
+    parcelType?: TParcelType;
+    weight: number;
+    codAmount: number;  // COLLECT FROM CUSTOMER AMOUNT
+    deliveryAddress: string;
+    senderEmail?: string;
+    senderName?: string;
+    senderPhone?: string;
+    receiverName?: string;
+    receiverEmail?: string;
+    receiverPhone: string;
+    parcelStatusLog: IParcelStatusLog[];
+}
+

@@ -83,8 +83,24 @@ export default function TrackParcel() {
                         <CardContent className="space-y-4">
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
+                                    <h3 className="text-base font-medium text-muted-foreground mb-1.5">Parcel Information</h3>
+                                    <p className="text-sm">Parcel Type: {parcelData?.data?.parcelType}</p>
+                                    <p className="text-sm">Weight: {parcelData?.data?.weight} kg</p>
+                                    <p className="text-sm">Cash on Delivery: {parcelData?.data?.codAmount} TK.</p>
+                                </div>
+                                <div>
+                                    <h3 className="text-base font-medium text-muted-foreground mb-1.5">Delivery Address</h3>
+                                    <p className="text-sm">{parcelData?.data?.deliveryAddress}</p>
+                                </div>
+                            </div>
+
+                            <Separator />
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div>
                                     <h3 className="text-base font-medium text-muted-foreground mb-1.5">Sender Information</h3>
+                                    <p className="text-sm">Name: {parcelData?.data?.senderName}</p>
                                     <p className="text-sm">Email: {parcelData?.data?.senderEmail}</p>
+                                    <p className="text-sm">Phone: {parcelData?.data?.senderPhone}</p>
                                 </div>
                                 <div>
                                     <h3 className="text-base font-medium text-muted-foreground mb-1.5">Receiver Information</h3>

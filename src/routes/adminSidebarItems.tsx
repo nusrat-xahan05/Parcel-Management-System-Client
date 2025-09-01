@@ -1,4 +1,5 @@
 import CreateParcel from "@/pages/Admin&User/CreateParcel";
+import MyParcels from "@/pages/Admin&User/MyParcels";
 import AllParcels from "@/pages/Admin/AllParcels";
 import AllUsers from "@/pages/Admin/AllUsers";
 import type { ISidebarItem } from "@/types";
@@ -46,7 +47,12 @@ export const adminSidebarItems: ISidebarItem[] = [
                 component: AllParcels
             },
             {
-                title: "Create Parcel",
+                title: "My Parcels",
+                url: "/admin/my-parcels",
+                component: MyParcels
+            },
+            {
+                title: "Create A Parcel",
                 url: "/admin/create-parcel",
                 component: CreateParcel
             }

@@ -1,5 +1,6 @@
 import { baseApi } from "@/redux/baseApi";
 import type { IParcel, IResponse } from "@/types";
+import type { ITrackParcelInfo } from "@/types/parcel.type";
 
 export const parcelApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -17,6 +18,15 @@ export const parcelApi = baseApi.injectEndpoints({
         allParcelInfo: builder.query({
             query: () => ({
                 url: "/parcel/all-parcels",
+                method: "GET",
+            }),
+            providesTags: ["PARCEL"],
+        }),
+
+        // ------ GET MY PARCELs
+        myParcels: builder.query({
+            query: () => ({
+                url: "/parcel/me",
                 method: "GET",
             }),
             providesTags: ["PARCEL"],
@@ -41,8 +51,17 @@ export const parcelApi = baseApi.injectEndpoints({
             invalidatesTags: ['PARCEL']
         }),
 
+        // ------ CANCEL A PARCEL
+        cancelParcel: builder.mutation({
+            query: (parcelId) => ({
+                url: `/parcel/${parcelId}/cancel`,
+                method: 'PATCH'
+            }),
+            invalidatesTags: ['PARCEL']
+        }),
+
         // ------ TRACK PARCEL
-        trackParcel: builder.query<IResponse<IParcel>, string>({
+        trackParcel: builder.query<IResponse<ITrackParcelInfo>, string>({
             query: (id: string) => ({
                 url: `/parcel/track-parcel/${id}`,
                 method: "GET",
@@ -52,4 +71,4 @@ export const parcelApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useCreateParcelMutation, useAllParcelInfoQuery, useSingleParcelInfoQuery, useUpdateParcelInfoMutation, useLazyTrackParcelQuery } = parcelApi;
+export const { useCreateParcelMutation, useAllParcelInfoQuery, useMyParcelsQuery, useSingleParcelInfoQuery, useUpdateParcelInfoMutation, useCancelParcelMutation, useLazyTrackParcelQuery } = parcelApi;
