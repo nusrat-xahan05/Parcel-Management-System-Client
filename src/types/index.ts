@@ -7,6 +7,7 @@ export type { IUser } from './user.type';
 export type { IParcel } from './parcel.type';
 export type { IAllUserQueryParams } from './user.type';
 export type { IAllParcelQueryParams } from './parcel.type';
+export type { IParcelAnalyticsResponse } from './stats.type';
 
 export interface ISidebarItem {
     title: string;
