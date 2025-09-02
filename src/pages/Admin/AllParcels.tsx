@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useSearchParams } from "react-router";
 import { Eye } from "lucide-react";
 import LoadingSpinner from "@/components/layout/LoadingSpinner/LoadingSpinner";
-import ParcelFilter from "@/components/modules/Admin/User/Parcel/ParcelFilter";
+import ParcelFilter from "@/components/modules/Admin/Parcel/ParcelFilter";
 
 export default function AllParcels() {
     const [searchParams] = useSearchParams();

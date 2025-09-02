@@ -1,8 +1,8 @@
-// import Bookings from "@/pages/User/Bookings";
-import Analytics from "@/pages/Admin/Analytics";
-import IncomingParcels from "@/pages/Receiver/IncomingParcels";
-import ParcelHistory from "@/pages/Receiver/ParcelHistory";
 import type { ISidebarItem } from "@/types";
+import { lazy } from "react";
+const Analytics = lazy(() => import("@/pages/Admin/Analytics"));
+const IncomingParcels = lazy(() => import("@/pages/Receiver/IncomingParcels"));
+const ParcelHistory = lazy(() => import("@/pages/Receiver/ParcelHistory"));
 
 export const receiverSidebarItems: ISidebarItem[] = [
     {

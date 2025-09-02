@@ -1,5 +1,5 @@
 import LoadingSpinner from "@/components/layout/LoadingSpinner/LoadingSpinner";
-import { UpdateParcelModal } from "@/components/modules/Admin/UpdateParcelModal";
+import { UpdateParcelModal } from "@/components/modules/Admin/Parcel/UpdateParcelModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";

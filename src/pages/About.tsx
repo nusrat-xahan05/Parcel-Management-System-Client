@@ -1,6 +1,7 @@
-import MissionMap from "@/components/modules/MissionMap";
-import Specialties from "@/components/modules/Specialties";
 import missionImg from "@/assets/images/mission.png"
+import { lazy } from "react";
+const MissionMap = lazy(() => import("@/components/modules/MissionMap"));
+const Specialties = lazy(() => import("@/components/modules/Specialties"));
 
 export default function About() {
     return (

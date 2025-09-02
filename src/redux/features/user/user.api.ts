@@ -13,6 +13,15 @@ export const userApi = baseApi.injectEndpoints({
             providesTags: ["USER"],
         }),
 
+        // ------ CREATE AGENT REQUEST
+        agentRequest: builder.mutation<IResponse<IUser>, void>({
+            query: () => ({
+                url: "/user/agent-request",
+                method: "POST"
+            }),
+            invalidatesTags: ['USER']
+        }),
+
         // ------ GET SINGLE USER
         singleUserInfo: builder.query<IResponse<IUser>, string>({
             query: (id: string) => ({
@@ -34,4 +43,4 @@ export const userApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useAllUserInfoQuery, useSingleUserInfoQuery, useUpdateUserInfoMutation } = userApi;
+export const { useAllUserInfoQuery, useAgentRequestMutation, useSingleUserInfoQuery, useUpdateUserInfoMutation } = userApi;

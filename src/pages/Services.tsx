@@ -5,7 +5,7 @@ import parcels from '@/assets/images/parcels.png'
 import express from '@/assets/images/express.png'
 import grocery from '@/assets/images/grocery.png'
 
-export function Services() {
+export default function Services() {
     return (
         <div className="max-w-7xl mx-auto py-24 px-4">
             <div className="text-center max-w-3xl mx-auto">

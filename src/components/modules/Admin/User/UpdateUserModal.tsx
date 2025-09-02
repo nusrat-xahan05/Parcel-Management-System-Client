@@ -113,7 +113,7 @@ export function UpdateUserModal({ profileInfo }: ChildProps) {
                     <p className="mb-4 text-center text-muted-foreground">{profileInfo.email} | {profileInfo.role}</p>
                 </DialogHeader>
                 <Form {...form}>
-                    <form className="space-y-6" id="add-tour-type" onSubmit={form.handleSubmit(onSubmit)}>
+                    <form className="space-y-6" id="update-user-info" onSubmit={form.handleSubmit(onSubmit)}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <FormField
                                 control={form.control}
@@ -238,7 +238,7 @@ export function UpdateUserModal({ profileInfo }: ChildProps) {
                     <DialogClose asChild>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
-                    <Button type="submit" form="add-tour-type">
+                    <Button type="submit" form="update-user-info">
                         Save changes
                     </Button>
                 </DialogFooter>

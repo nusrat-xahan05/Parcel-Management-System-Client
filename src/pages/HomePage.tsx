@@ -1,8 +1,9 @@
-import FAQ from "@/components/modules/FAQ";
-import Banner from "@/components/modules/HomePage/Banner";
-import ReliableDelivery from "@/components/modules/HomePage/ReliableDelivery";
-import ServiceWorkSteps from "@/components/modules/HomePage/ServiceWorkSteps";
-import Specialties from "@/components/modules/Specialties";
+import { lazy } from "react";
+const Banner = lazy(() => import("@/components/modules/HomePage/Banner"));
+const FAQ = lazy(() => import("@/components/modules/FAQ"));
+const ReliableDelivery = lazy(() => import("@/components/modules/HomePage/ReliableDelivery"));
+const ServiceWorkSteps = lazy(() => import("@/components/modules/HomePage/ServiceWorkSteps"));
+const Specialties = lazy(() => import("@/components/modules/Specialties"));
 
 export default function HomePage(){
     return (

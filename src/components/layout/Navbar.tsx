@@ -1,14 +1,14 @@
-import ProfileMenu from "@/components/ProfileMenu"
 import { Button } from "@/components/ui/button"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, } from "@/components/ui/navigation-menu"
 import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popover"
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api"
 import { Link } from "react-router"
 import HamburgerMenu from "@/assets/icons/HamburgerMenu"
-import React from "react"
+import React, { lazy } from "react"
 import { ModeToggle } from "./ModeToggler"
 import Logo from "@/assets/icons/Logo"
 import { Role } from "@/constants/User"
+const ProfileMenu = lazy(() => import("@/components/ProfileMenu"));
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [

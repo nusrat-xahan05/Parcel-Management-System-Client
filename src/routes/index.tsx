@@ -1,26 +1,28 @@
 import App from "@/App";
-import DashboardLayout from "@/components/layout/DashboardLayout";
 import FAQ from "@/components/modules/FAQ";
 import { Role } from "@/constants/User";
-import About from "@/pages/About";
-import Contact from "@/pages/Contact";
 import HomePage from "@/pages/HomePage";
-import Login from "@/pages/Login";
-import Register from "@/pages/Register";
-import { Services } from "@/pages/Services";
-import TrackParcel from "@/pages/TrackParcel";
-import Verify from "@/pages/Verify";
 import type { TRole } from "@/types";
 import { generateRoutes } from "@/utils/generateRoutes";
 import { withAuth } from "@/utils/withAuth";
 import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
-import Unauthorized from "@/pages/Unauthorized";
-import UserDetails from "@/pages/Admin/UserDetails";
-import ParcelDetails from "@/pages/Admin&User/ParcelDetails";
 import { senderSidebarItems } from "./senderSidebarItems";
-import ErrorPage from "@/pages/ErrorPage";
 import { receiverSidebarItems } from "./receiverSidebarItems";
+import { lazy } from "react";
+const DashboardLayout = lazy(() => import("@/components/layout/DashboardLayout"));
+const Register = lazy(() => import("@/pages/Register"));
+const Login = lazy(() => import("@/pages/Login"));
+const ViewProfile = lazy(() => import("@/pages/Admin&User/ViewProfile"));
+const About = lazy(() => import("@/pages/About"));
+const Services = lazy(() => import("@/pages/Services"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const ParcelDetails = lazy(() => import("@/pages/Admin&User/ParcelDetails"));
+const UserDetails = lazy(() => import("@/pages/Admin/UserDetails"));
+const Verify = lazy(() => import("@/pages/Verify"));
+const TrackParcel = lazy(() => import("@/pages/TrackParcel"));
+const Unauthorized = lazy(() => import("@/pages/Unauthorized"));
+const ErrorPage = lazy(() => import("@/pages/ErrorPage"));
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 Component: Contact,
                 path: "/contact",
+            },
+            {
+                Component: ViewProfile,
+                path: "/profile",
             },
             {
                 Component: TrackParcel,

@@ -1,6 +1,7 @@
 import ContactImg from "@/assets/images/contact.jpg";
 import { ContactForm } from "@/components/modules/ContactForm";
 
+
 export default function Contact() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
