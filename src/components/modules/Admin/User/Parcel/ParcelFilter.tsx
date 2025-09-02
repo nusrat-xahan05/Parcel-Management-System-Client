@@ -9,56 +9,54 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import type { TRole } from "@/types";
-import type { TAgentStatus, TUserStatus } from "@/types/user.type";
+import type { TParcelStatus, TParcelType } from "@/types/parcel.type";
 import { useState } from "react";
 import { useSearchParams } from "react-router";
 
-export default function UserFilter() {
+export default function ParcelFilter() {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const selectedRole = searchParams.get("role") || undefined;
-    const selectedUserStatus = searchParams.get("userStatus") || undefined;
-    const selectedAgentRequest = searchParams.get("agentStatus") || undefined;
-    const [searchEmail, setSearchEmail] = useState(searchParams.get("email") || undefined);
+    const selectedStatus = searchParams.get("currentStatus") || undefined;
+    const selectedParcelType = searchParams.get("parcelType") || undefined;
+    const [searchSenderEmail, setSearchSenderEmail] = useState(searchParams.get("senderEmail") || undefined);
+    const [searchReceiverEmail, setSearchReceiverEmail] = useState(searchParams.get("receiverEmail") || undefined);
 
-
-    const roleTypes: TRole[] = ["ADMIN", "AGENT", "SENDER", "RECEIVER"];
-    const userStatuses: TUserStatus[] = ["ACTIVE", "BLOCKED"];
-    const agentRequestes: TAgentStatus[] = ['NOT_REQUESTED', "PENDING", "APPROVED", "REJECTED"];
-
-    const handleRoleChange = (value: string) => {
-        const params = new URLSearchParams(searchParams);
-        params.set("role", value);
-        setSearchParams(params);
-    };
+    const currentStatuses: TParcelStatus[] = ['REQUESTED', "APPROVED", "DISPATCHED", "IN TRANSIT", "OUT FOR DELIVERY", "DELIVERED", "CONFIRMED", "CANCELLED", "BLOCKED"];
+    const parcelTypes :TParcelType[] = ['FRAGILE', "CLOTHES", "ELECTRONICS", "FOOD ITEMS", "MEDICAL", "DOCUMENTS", "OTHERS"]
 
     const handleStatusChange = (value: string) => {
         const params = new URLSearchParams(searchParams);
-        params.set("userStatus", value);
+        params.set("currentStatus", value);
         setSearchParams(params);
     };
 
-    const handleRequestChange = (value: string) => {
+    const handleParcelTypeChange = (value: string) => {
         const params = new URLSearchParams(searchParams);
-        params.set("agentStatus", value);
+        params.set("parcelType", value);
         setSearchParams(params);
     };
 
-    const handleEmailChange = (value: string) => {
+    const handleSenderEmailChange = (value: string) => {
         const params = new URLSearchParams(searchParams);
-        params.set("email", value);
+        params.set("senderEmail", value);
+        setSearchParams(params);
+    };
+
+    const handleReceiverEmailChange = (value: string) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("receiverEmail", value);
         setSearchParams(params);
     };
 
     const handleClearFilter = () => {
         const params = new URLSearchParams(searchParams);
-        params.delete("role");
-        params.delete("userStatus");
-        params.delete("agentStatus");
-        params.delete("email");
+        params.delete("currentStatus");
+        params.delete("parcelType");
+        params.delete("senderEmail");
+        params.delete("receiverEmail");
         setSearchParams(params);
-        setSearchEmail("");
+        setSearchSenderEmail('');
+        setSearchReceiverEmail('')
     };
 
     return (
@@ -71,10 +69,10 @@ export default function UserFilter() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
                 <div>
-                    <Label className="mb-2">User Role</Label>
+                    <Label className="mb-2">Parcel Status</Label>
                     <Select
-                        onValueChange={(value) => handleRoleChange(value)}
-                        value={selectedRole ? selectedRole : ""}
+                        onValueChange={(value) => handleStatusChange(value)}
+                        value={selectedStatus ? selectedStatus : ""}
                     >
                         <SelectTrigger className="w-full">
                             <SelectValue />
@@ -82,7 +80,7 @@ export default function UserFilter() {
                         <SelectContent>
                             <SelectGroup>
                                 <SelectLabel>Role</SelectLabel>
-                                {roleTypes.map((option) => (
+                                {currentStatuses.map((option) => (
                                     <SelectItem key={option} value={option}>
                                         {option}
                                     </SelectItem>
@@ -92,10 +90,10 @@ export default function UserFilter() {
                     </Select>
                 </div>
                 <div>
-                    <Label className="mb-2">User Status</Label>
+                    <Label className="mb-2">Parcel Type</Label>
                     <Select
-                        onValueChange={(value) => handleStatusChange(value)}
-                        value={selectedUserStatus ? selectedUserStatus : ""}
+                        onValueChange={(value) => handleParcelTypeChange(value)}
+                        value={selectedParcelType ? selectedParcelType : ""}
                     >
                         <SelectTrigger className="w-full">
                             <SelectValue />
@@ -103,28 +101,7 @@ export default function UserFilter() {
                         <SelectContent>
                             <SelectGroup>
                                 <SelectLabel>Status</SelectLabel>
-                                {userStatuses.map((option) => (
-                                    <SelectItem key={option} value={option}>
-                                        {option}
-                                    </SelectItem>
-                                ))}
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div>
-                    <Label className="mb-2">User Agent Request</Label>
-                    <Select
-                        onValueChange={(value) => handleRequestChange(value)}
-                        value={selectedAgentRequest ? selectedAgentRequest : ""}
-                    >
-                        <SelectTrigger className="w-full">
-                            <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectLabel>Request</SelectLabel>
-                                {agentRequestes.map((option) => (
+                                {parcelTypes.map((option) => (
                                     <SelectItem key={option} value={option}>
                                         {option}
                                     </SelectItem>
@@ -134,16 +111,29 @@ export default function UserFilter() {
                     </Select>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-4 gap-6">
                 <div>
-                    <Label className="mb-2">Search by Email</Label>
+                    <Label className="mb-2">Search by Sender Email</Label>
                     <input
                         type="text"
-                        placeholder="Search by email"
-                        value={searchEmail}
+                        placeholder="Search by Sender email"
+                        value={searchSenderEmail}
                         onChange={(e) => {
-                            setSearchEmail(e.target.value);
-                            handleEmailChange(e.target.value);
+                            setSearchSenderEmail(e.target.value);
+                            handleSenderEmailChange(e.target.value);
+                        }}
+                        className="border p-2 rounded w-full"
+                    />
+                </div>
+                <div>
+                    <Label className="mb-2">Search by Receiver Email</Label>
+                    <input
+                        type="text"
+                        placeholder="Search by Receiver email"
+                        value={searchReceiverEmail}
+                        onChange={(e) => {
+                            setSearchReceiverEmail(e.target.value);
+                            handleReceiverEmailChange(e.target.value);
                         }}
                         className="border p-2 rounded w-full"
                     />

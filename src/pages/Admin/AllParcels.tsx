@@ -2,18 +2,33 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { useState } from "react";
 import { useAllParcelInfoQuery } from "@/redux/features/parcel/parcel.api";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import type { IParcel } from "@/types";
+import type { IAllParcelQueryParams, IParcel } from "@/types";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { Eye } from "lucide-react";
 import LoadingSpinner from "@/components/layout/LoadingSpinner/LoadingSpinner";
+import ParcelFilter from "@/components/modules/Admin/User/Parcel/ParcelFilter";
 
 export default function AllParcels() {
+    const [searchParams] = useSearchParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit, setLimit] = useState(5);
+    const [limit, setLimit] = useState(8);
     console.log(setLimit);
 
-    const { data, isLoading: allParcelLoading } = useAllParcelInfoQuery({ page: currentPage, limit });
+    const currentStatus = searchParams.get("currentStatus") || undefined;
+    const parcelType = searchParams.get("parcelType") || undefined;
+    const senderEmail = searchParams.get("senderEmail") || undefined;
+    const receiverEmail = searchParams.get("receiverEmail") || undefined;
+
+    const queryParams: IAllParcelQueryParams = {
+        currentStatus,
+        parcelType,
+        senderEmail,
+        receiverEmail,
+        page: currentPage,
+        limit
+    };
+    const { data, isLoading: allParcelLoading } = useAllParcelInfoQuery(queryParams);
 
     const totalPage = data?.meta?.totalPage || 1;
 
@@ -28,6 +43,7 @@ export default function AllParcels() {
             {
                 !allParcelLoading && (
                     <div className="w-full max-w-7xl mx-auto px-5">
+                        <ParcelFilter></ParcelFilter>
                         <div className="flex justify-between my-8">
                             <h1 className="text-xl font-semibold">Parcel List</h1>
                         </div>
@@ -35,7 +51,7 @@ export default function AllParcels() {
                             <Table className="table-fixed w-full min-w-[600px]">
                                 <TableHeader className="bg-primary/50">
                                     <TableRow>
-                                        <TableHead className="hidden lg:inline-block mt-0 lg:mt-1.5 w-[25%] text-center">Parcel Id</TableHead>
+                                        <TableHead className="mt-2 hidden lg:inline-block w-[25%] text-center">Parcel Id</TableHead>
                                         <TableHead className="w-[25%] text-center">Sender</TableHead>
                                         <TableHead className="w-[20%] text-center">Receiver</TableHead>
                                         <TableHead className="w-[15%] text-center">Status</TableHead>
@@ -45,7 +61,7 @@ export default function AllParcels() {
                                 <TableBody>
                                     {data?.data?.map((item: IParcel, idx: number) => (
                                         <TableRow key={idx}>
-                                            <TableCell className="hidden lg:inline-block mt-0 lg:mt-1.5 w-[25%] text-center">{item?._id}</TableCell>
+                                            <TableCell className="mt-2 hidden lg:inline-block w-[25%] text-center">{item?._id}</TableCell>
                                             <TableCell className="w-[25%] text-center">{item?.senderEmail}</TableCell>
                                             <TableCell className="w-[20%] text-center">{item?.receiverEmail}</TableCell>
                                             <TableCell className="w-[15%] text-center">{item?.currentStatus}</TableCell>

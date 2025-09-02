@@ -38,6 +38,15 @@ export interface IParcel {
     updatedAt?: string;
 }
 
+export interface IAllParcelQueryParams {
+    currentStatus?: string,
+    parcelType?: string,
+    senderEmail?: string,
+    receiverEmail?: string,
+    page?: number;
+    limit?: number;
+}
+
 export interface ITrackParcelInfo {
     trackingId?: string;
     parcelType?: TParcelType;
