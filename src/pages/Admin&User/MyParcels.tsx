@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { Eye } from "lucide-react";
 import { parcelStatus } from "@/constants/Parcel";
-import { CancelConfirmation } from "@/components/CancelConfirmation";
 import { toast } from "sonner";
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
 import LoadingSpinner from "@/components/layout/LoadingSpinner/LoadingSpinner";
+import { ConfirmationAlert } from "@/components/ConfirmationAlert";
 
 export default function MyParcels() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -64,24 +64,31 @@ export default function MyParcels() {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {data?.data?.map((item: IParcel, idx: number) => (
+                                    {Array.isArray(data?.data) && data.data.length > 0 ? (data?.data?.map((item: IParcel, idx: number) => (
                                         <TableRow key={idx}>
                                             <TableCell className="hidden lg:inline-block mt-0 lg:mt-1.5 w-[25%] text-center">{item?._id}</TableCell>
                                             <TableCell className="w-[25%] text-center">{item?.receiverEmail}</TableCell>
                                             <TableCell className="w-[20%] text-center">{item?.currentStatus}</TableCell>
                                             <TableCell className="w-[15%] text-center">
-                                                <CancelConfirmation onConfirm={() => handleCancelParcel(item._id as string)}>
+                                                <ConfirmationAlert onConfirm={() => handleCancelParcel(item._id as string)}>
                                                     <Button
                                                         size="sm"
                                                         disabled={!(item?.currentStatus === parcelStatus.REQUESTED || item?.currentStatus === parcelStatus.APPROVED)}>Cancel
                                                     </Button>
-                                                </CancelConfirmation>
+                                                </ConfirmationAlert>
                                             </TableCell>
                                             <TableCell className="w-[15%] text-center">
                                                 <Button size="sm"><Link to={`/${userRole}/parcel/${item._id}`}><Eye></Eye></Link></Button>
                                             </TableCell>
                                         </TableRow>
-                                    ))}
+                                    ))
+                                    ) : (
+                                        <TableRow>
+                                            <TableCell colSpan={4} className="text-center">
+                                                No parcels found
+                                            </TableCell>
+                                        </TableRow>
+                                    )}
                                 </TableBody>
                             </Table>
 

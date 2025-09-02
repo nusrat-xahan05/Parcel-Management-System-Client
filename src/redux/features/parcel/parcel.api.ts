@@ -41,6 +41,24 @@ export const parcelApi = baseApi.injectEndpoints({
             providesTags: ["PARCEL"],
         }),
 
+        // ------ GET INCOMING PARCELS
+        incomingParcel: builder.query<IResponse<IParcel>, void>({
+            query: () => ({
+                url: "/parcel/incoming",
+                method: "GET",
+            }),
+            providesTags: ["PARCEL"],
+        }),
+
+        // ------ GET INCOMING PARCELS
+        parcelHistory: builder.query<IResponse<IParcel>, void>({
+            query: () => ({
+                url: "/parcel/history",
+                method: "GET",
+            }),
+            providesTags: ["PARCEL"],
+        }),
+
         // ------ UPDATE A PARCEL
         updateParcelInfo: builder.mutation({
             query: ({ parcelId, parcelData }) => ({
@@ -60,6 +78,15 @@ export const parcelApi = baseApi.injectEndpoints({
             invalidatesTags: ['PARCEL']
         }),
 
+        // ------ CONFIRM PARCEL DELIVERY
+        confirmParcel: builder.mutation({
+            query: (parcelId) => ({
+                url: `/parcel/${parcelId}/confirm-delivery`,
+                method: 'PATCH'
+            }),
+            invalidatesTags: ['PARCEL']
+        }),
+
         // ------ TRACK PARCEL
         trackParcel: builder.query<IResponse<ITrackParcelInfo>, string>({
             query: (id: string) => ({
@@ -71,4 +98,4 @@ export const parcelApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useCreateParcelMutation, useAllParcelInfoQuery, useMyParcelsQuery, useSingleParcelInfoQuery, useUpdateParcelInfoMutation, useCancelParcelMutation, useLazyTrackParcelQuery } = parcelApi;
+export const { useCreateParcelMutation, useAllParcelInfoQuery, useMyParcelsQuery, useSingleParcelInfoQuery, useIncomingParcelQuery, useUpdateParcelInfoMutation, useParcelHistoryQuery, useCancelParcelMutation, useConfirmParcelMutation, useLazyTrackParcelQuery } = parcelApi;

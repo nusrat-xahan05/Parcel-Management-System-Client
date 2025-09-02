@@ -17,9 +17,10 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
 import Unauthorized from "@/pages/Unauthorized";
 import UserDetails from "@/pages/Admin/UserDetails";
-import ParcelDetails from "@/pages/Admin/ParcelDetails";
+import ParcelDetails from "@/pages/Admin&User/ParcelDetails";
 import { senderSidebarItems } from "./senderSidebarItems";
 import ErrorPage from "@/pages/ErrorPage";
+import { receiverSidebarItems } from "./receiverSidebarItems";
 
 export const router = createBrowserRouter([
     {
@@ -79,6 +80,18 @@ export const router = createBrowserRouter([
                 path: 'parcel/:id'
             },
             ...generateRoutes(senderSidebarItems),
+        ],
+    },
+    {
+        Component: withAuth(DashboardLayout, Role.RECEIVER as TRole),
+        path: "/receiver",
+        children: [
+            { index: true, element: <Navigate to="/receiver/analytics" /> },
+            {
+                Component: ParcelDetails,
+                path: 'parcel/:id'
+            },
+            ...generateRoutes(receiverSidebarItems),
         ],
     },
     {

@@ -16,7 +16,7 @@ interface IProps {
     onConfirm: () => void;
 }
 
-export function CancelConfirmation({ children, onConfirm }: IProps) {
+export function ConfirmationAlert({ children, onConfirm }: IProps) {
     const handleConfirm = () => {
         onConfirm();
     }
@@ -30,12 +30,12 @@ export function CancelConfirmation({ children, onConfirm }: IProps) {
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action cannot be undone. This will permanently cancel your parcel.
+                        Make sure you want to do it. This action cannot be undone.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Go Back</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleConfirm}>Cancel</AlertDialogAction>
+                    <AlertDialogAction onClick={handleConfirm}>Proceed</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
