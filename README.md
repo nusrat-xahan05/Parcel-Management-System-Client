@@ -1,69 +1,102 @@
-# React + TypeScript + Vite
+# 📦 Parcel Delivery System -- Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ParcelRunner **frontend application** which is basically a Parcel Delivery System,
+providing role-based dashboards for creating, cancelling, confirming tracking parcels and other more functionalities.
 
-Currently, two official plugins are available:
+------------------------------------------------------------------------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Technologies Used
 
-## Expanding the ESLint configuration
+-   **React** -- Frontend framework
+-   **React Router** -- Routing & navigation
+-   **AXIOS**, **Redix RTK Query** -- State management & API calls
+-   **TypeScript** -- Type safety
+-   **Tailwind CSS**, **ShadCN**, **Origin UI** -- Styling, UI components
+-   **Recharts** -- Data visualization (charts & graphs)
+-   **Nodemailer**, **Redis** -- OTP verification system
+-   **Toast Notifications** -- User feedback
+-   **Loading Spinner** -- Smooth UI data loading experience
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+------------------------------------------------------------------------
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🌍 Public Routes
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+-   *Home Page*, *About Page*, *Services Page*, *FAQ Section*, *Contact Page*
+-   *Authentication*
+    -   Login (JWT-based authentication)
+    -   Register (Sender or Receiver role)
+    -   Logout functionality
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+------------------------------------------------------------------------
+
+## 📊 Role-Based Dashboards & Features
+
+### 👑 Admin
+
+-   Manage all **users** & **parcels** (filter, block, verify, approve,
+    etc.)
+-   View detailed user and parcel information
+-   Approve/reject **agent requests**
+-   Assign parcels to delivery agents
+-   Update parcel statuses
+-   **Analytics Dashboard** with statistics cards & pie charts
+
+### 📤 Sender
+
+-   Create new parcel requests
+-   Update own profile information
+-   Submit agent requests
+-   Cancel parcels (if not yet dispatched)
+-   View list of created parcels & detailed status logs
+
+### 📥 Receiver
+
+-   View incoming parcels
+-   Confirm delivery once received
+-   View delivery history
+-   Submit agent requests
+
+### 🚚 Agent
+
+-   View assigned parcels
+-   Update parcel delivery statuses step by step
+
+------------------------------------------------------------------------
+
+## 🔒 Security & Access Control
+
+-   Only **verified users** can log in
+-   Verification via **email OTP** or **admin approval**
+-   Once an agent request is rejected, it **cannot be resubmitted**
+
+------------------------------------------------------------------------
+
+
+## 📂 Project Setup
+
+``` bash
+# Clone repo
+git clone <repo-url>
+
+# Navigate to frontend folder
+cd parcel-delivery-frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+------------------------------------------------------------------------
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📮 Environment Variables
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Create a `.env` file in the root of the frontend:
+
+``` env
+VITE_API_URL=http://localhost:5000/api/v1
 ```
+
+------------------------------------------------------------------------
+
