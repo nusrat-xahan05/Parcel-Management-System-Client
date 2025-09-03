@@ -12,8 +12,7 @@ import UserFilter from "@/components/modules/Admin/User/UserFilter";
 export default function AllAgentRequest() {
     const [searchParams] = useSearchParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit, setLimit] = useState(8);
-    console.log(setLimit);
+    const [limit] = useState(8);
 
     const role = searchParams.get("role") || undefined;
     const userStatus = searchParams.get("userStatus") || undefined;
@@ -30,8 +29,6 @@ export default function AllAgentRequest() {
     };
 
     const { data, isLoading: allUserLoading } = useAllAgentRequestQuery(queryParams);
-
-    console.log('from Data Agent: ', data);
 
     const totalPage = data?.meta?.totalPage || 1;
 
@@ -68,7 +65,7 @@ export default function AllAgentRequest() {
                                             <TableCell className="w-1/5 text-center">{item?.userId?.role}</TableCell>
                                             <TableCell className="w-1/5 text-center">{item?.agentStatus}</TableCell>
                                             <TableCell className="w-1/5 text-center">
-                                                {item?.isVerified ? "Yes" : "No"}
+                                                {item?.userId?.isVerified ? "Yes" : "No"}
                                             </TableCell>
                                             <TableCell className="w-1/5 text-center">
                                                 <Button size="sm"><Link to={`/admin/user/${item?.userId?._id}`}><Eye></Eye></Link></Button>

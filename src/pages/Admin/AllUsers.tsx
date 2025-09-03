@@ -12,8 +12,7 @@ import UserFilter from "@/components/modules/Admin/User/UserFilter";
 export default function AllUsers() {
     const [searchParams] = useSearchParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit, setLimit] = useState(8);
-    console.log(setLimit);
+    const [limit] = useState(8);
 
     const role = searchParams.get("role") || undefined;
     const userStatus = searchParams.get("userStatus") || undefined;

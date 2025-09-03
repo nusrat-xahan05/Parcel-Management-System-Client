@@ -46,23 +46,16 @@ export function ContactForm({
         },
     });
 
-    const onSubmit = async (data: z.infer<typeof contactSchema>) => {
-        const userInfo = {
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            message: data.message
-        };
+    const onSubmit = async () => {
 
+        const toastId = toast.loading("Processing...");
         try {
             // const res = await contact(userInfo).unwrap();
-            console.log(userInfo);
-            toast.success("Message Sent successfully");
+            toast.success("Message Sent successfully", { id: toastId });
             navigate("/");
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            console.error(err);
-            toast.error(`${err.data.message}`);
+            toast.error(`${err.data.message}`, { id: toastId });
         }
     };
 

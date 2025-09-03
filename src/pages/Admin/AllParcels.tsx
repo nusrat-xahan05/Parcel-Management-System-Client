@@ -12,8 +12,7 @@ import ParcelFilter from "@/components/modules/Admin/Parcel/ParcelFilter";
 export default function AllParcels() {
     const [searchParams] = useSearchParams();
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit, setLimit] = useState(8);
-    console.log(setLimit);
+    const [limit] = useState(8);
 
     const currentStatus = searchParams.get("currentStatus") || undefined;
     const parcelType = searchParams.get("parcelType") || undefined;
