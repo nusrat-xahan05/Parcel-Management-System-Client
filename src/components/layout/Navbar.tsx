@@ -27,7 +27,7 @@ export default function Navbar() {
   const { data, isLoading } = useUserInfoQuery();
 
   return (
-    <header className="border-b">
+    <header className="border-b py-3">
       <div className="mx-auto max-w-7xl flex h-16 items-center justify-between px-4 md:px-6">
         {/* Left side */}
         <Link className="text-primary hover:text-primary/90" to="/"><Logo /></Link>
@@ -45,7 +45,7 @@ export default function Navbar() {
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           asChild
-                          className="text-muted-foreground hover:text-primary text-lg py-1.5 font-medium"
+                          className="text-muted-foreground hover:text-primary text-base sm:text-lg py-1.5 font-medium"
                         >
                           <Link to={link.href}>{link.label}</Link>
                         </NavigationMenuLink>
@@ -55,7 +55,7 @@ export default function Navbar() {
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           asChild
-                          className="text-muted-foreground hover:text-primary text-lg py-1.5 font-medium"
+                          className="text-muted-foreground hover:text-primary text-base sm:text-lg py-1.5 font-medium"
                         >
                           <Link to={link.href}>{link.label}</Link>
                         </NavigationMenuLink>
@@ -71,7 +71,7 @@ export default function Navbar() {
             <ProfileMenu userInfo={data.data} />
           )}
           {!data?.data?.email && (
-            <Button asChild className="text-lg">
+            <Button asChild className="text-sm sm:text-lg">
               <Link to="/login">Login</Link>
             </Button>
           )}
