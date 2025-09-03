@@ -76,7 +76,7 @@ providing role-based dashboards for creating, cancelling, confirming tracking pa
 
 ``` bash
 # Clone repo
-git clone <repo-url>
+git clone https://github.com/nusrat-xahan05/Parcel-Management-System-Client.git
 
 # Navigate to frontend folder
 cd parcel-delivery-frontend

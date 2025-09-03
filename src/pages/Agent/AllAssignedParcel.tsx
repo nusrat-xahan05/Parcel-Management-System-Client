@@ -8,8 +8,7 @@ import { UpdateAssignedParcelStatus } from "@/components/modules/Agent/UpdateAss
 
 export default function AllAssignedParcel() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit, setLimit] = useState(8);
-    console.log(setLimit);
+    const [limit] = useState(8);
 
     const queryParams: IAllParcelQueryParams = {
         page: currentPage,

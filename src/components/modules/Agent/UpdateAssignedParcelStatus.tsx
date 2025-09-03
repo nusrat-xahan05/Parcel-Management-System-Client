@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { parcelStatus } from "@/constants/Parcel";
 import { useUpdateParcelStatusMutation } from "@/redux/features/parcel/parcel.api";
 import type { IParcel } from "@/types";
 import type { TParcelStatus } from "@/types/parcel.type";
@@ -20,19 +19,10 @@ type ChildProps = {
 const updateParcelStatusSchema = z
     .object({
         currentStatus: z
-            .enum(Object.values(parcelStatus) as [TParcelStatus, ...TParcelStatus[]])
-            .optional()
+            .string({ message: "Status is Required" })
             .refine((val) => val !== undefined, {
                 message: "Status is Required",
             })
-            .superRefine((val, ctx) => {
-                if (val && !Object.values(parcelStatus).includes(val)) {
-                    ctx.addIssue({
-                        code: "custom",
-                        message: `${val} is Not Acceptable`,
-                    });
-                }
-            }),
     })
 
 
@@ -45,7 +35,7 @@ export function UpdateAssignedParcelStatus({ parcelInfo }: ChildProps) {
     const form = useForm<z.infer<typeof updateParcelStatusSchema>>({
         resolver: zodResolver(updateParcelStatusSchema),
         defaultValues: {
-            currentStatus: parcelInfo.currentStatus
+            currentStatus: undefined
         },
     });
 
@@ -54,18 +44,16 @@ export function UpdateAssignedParcelStatus({ parcelInfo }: ChildProps) {
             currentStatus: data.currentStatus
         };
 
-        console.log('from data: ', updatedInfo);
-
         const toastId = toast.loading("Updating...");
         try {
             const res = await updateParcelStatus({ parcelId: parcelInfo._id, parcelData: updatedInfo }).unwrap();
-            console.log('from update res: ', res);
             toast.success(res.message, { id: toastId });
             setOpen(false);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             toast.error(err.data.message, { id: toastId });
         }
+        form.reset();
     };
 
 
@@ -87,7 +75,7 @@ export function UpdateAssignedParcelStatus({ parcelInfo }: ChildProps) {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Parcel Status</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={parcelInfo.currentStatus}>
+                                        <Select onValueChange={field.onChange}>
                                             <FormControl>
                                                 <SelectTrigger className="w-full px-5 rounded-xl">
                                                     <SelectValue placeholder="Select Status" />
