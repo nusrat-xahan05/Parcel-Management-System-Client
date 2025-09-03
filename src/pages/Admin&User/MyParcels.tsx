@@ -14,8 +14,7 @@ import { ConfirmationAlert } from "@/components/ConfirmationAlert";
 
 export default function MyParcels() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [limit, setLimit] = useState(5);
-    console.log(setLimit);
+    const [limit] = useState(5);
 
     const { data: userData, isLoading: userLoading } = useUserInfoQuery(undefined);
     const userRole = userData?.data?.role?.toLowerCase();

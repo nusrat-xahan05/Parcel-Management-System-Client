@@ -15,7 +15,6 @@ export default function ParcelDetails() {
 
     const { data: userData, isLoading: userLoading } = useUserInfoQuery(undefined);
     const { data, isLoading: parcelLoading } = useSingleParcelInfoQuery(id!);
-    console.log('from parcel details: ', data);
 
     if (userLoading || parcelLoading) {
         return <LoadingSpinner></LoadingSpinner>;
