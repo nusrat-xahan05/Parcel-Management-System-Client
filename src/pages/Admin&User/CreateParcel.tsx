@@ -7,10 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { DeliveryType, ParcelType, ServiceType } from "@/constants/Parcel";
 import { useCreateParcelMutation } from "@/redux/features/parcel/parcel.api";
 import type { IParcel, TDeliveryType, TParcelType, TServiceType } from "@/types/parcel.type";
-// import type { IErrorResponse } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { useForm } from "react-hook-form";
+import { useForm, type Resolver } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 import parcelImg from '@/assets/images/parcels.png';
@@ -99,15 +97,13 @@ const createParcelZodSchema = z.object({
         })
         .max(200, { message: "Delivery Address Cannot Exceed 400 Characters" }),
     weight: z
-        .string()
-        .min(1, {
-            message: 'Weight must be a Positive Number'
-        }),
+        .coerce
+        .number()
+        .min(0.5, { message: "Weight Must be Greater than 0.5" }),
     codAmount: z
-        .string()
-        .min(0, {
-            message: 'Cash On Delivery Amount must be a Positive Number'
-        }),
+        .coerce
+        .number()
+        .min(0, { message: "Cash On Delivery Amount must be a Positive Number" }),
 })
 
 export default function CreateParcel() {
@@ -120,7 +116,7 @@ export default function CreateParcel() {
 
 
     const form = useForm<z.infer<typeof createParcelZodSchema>>({
-        resolver: zodResolver(createParcelZodSchema),
+        resolver: zodResolver(createParcelZodSchema) as Resolver<z.infer<typeof createParcelZodSchema>>,
         defaultValues: {
             serviceType: "REGULAR",
             deliveryType: "HOME",
@@ -131,8 +127,8 @@ export default function CreateParcel() {
             receiverPhone: "+8801234567890",
             pickUpAddress: "Loading...",
             deliveryAddress: "ABC Block, Dhaka",
-            weight: "1",
-            codAmount: "0",
+            weight: 1,
+            codAmount: 0,
         },
     });
 
@@ -148,8 +144,8 @@ export default function CreateParcel() {
                 receiverPhone: "+8801234567890",
                 pickUpAddress: userData.data.address || "Not Provided",
                 deliveryAddress: "ABC Block, Dhaka",
-                weight: "1",
-                codAmount: "0",
+                weight: 1,
+                codAmount: 0,
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -171,9 +167,9 @@ export default function CreateParcel() {
                 toast.success(res.message, { id: toastId });
                 form.reset();
             }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-            if(err?.data?.message === 'Zod Error'){
+            if (err?.data?.message === 'Zod Error') {
                 toast.error(err.data.errorSources[0].message, { id: toastId });
             }
             toast.error(err.data.message, { id: toastId });
@@ -290,7 +286,14 @@ export default function CreateParcel() {
                                                         <FormLabel>Parcel Weight (KG)</FormLabel>
                                                         <FormControl>
                                                             <Input
-                                                                type="number" {...field} value={field.value || ""} />
+                                                                type="number"
+                                                                value={field.value ?? ""}
+                                                                onChange={(e) =>
+                                                                    field.onChange(
+                                                                        e.target.value === "" ? undefined : Number(e.target.value)
+                                                                    )
+                                                                }
+                                                            />
                                                         </FormControl>
                                                         <FormMessage>{fieldState.error?.message}</FormMessage>
                                                     </FormItem>
@@ -304,14 +307,21 @@ export default function CreateParcel() {
                                             <FormField
                                                 control={form.control}
                                                 name="codAmount"
-                                                render={({ field, fieldState }) => (
-                                                    <FormItem className="flex-1">
+                                                render={({ field }) => (
+                                                    <FormItem>
                                                         <FormLabel>COD Amount (TK)</FormLabel>
                                                         <FormControl>
                                                             <Input
-                                                                type="number" {...field} value={field.value || ""} />
+                                                                type="number"
+                                                                value={field.value ?? ""}
+                                                                onChange={(e) =>
+                                                                    field.onChange(
+                                                                        e.target.value === "" ? undefined : Number(e.target.value)
+                                                                    )
+                                                                }
+                                                            />
                                                         </FormControl>
-                                                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                                                        <FormMessage />
                                                     </FormItem>
                                                 )}
                                             />

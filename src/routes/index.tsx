@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
         Component: withAuth(DashboardLayout, Role.SENDER as TRole),
         path: "/sender",
         children: [
-            { index: true, element: <Navigate to="/sender/analytics" /> },
+            { index: true, element: <Navigate to="/sender/my-parcels" /> },
             {
                 Component: ParcelDetails,
                 path: 'parcel/:id'
@@ -92,7 +92,7 @@ export const router = createBrowserRouter([
         Component: withAuth(DashboardLayout, Role.RECEIVER as TRole),
         path: "/receiver",
         children: [
-            { index: true, element: <Navigate to="/receiver/analytics" /> },
+            { index: true, element: <Navigate to="/receiver/parcel-history" /> },
             {
                 Component: ParcelDetails,
                 path: 'parcel/:id'
