@@ -61,7 +61,7 @@ const updateUserSchema = z
             }),
     })
 
-    
+
 export function UpdateUserModal({ profileInfo }: ChildProps) {
     const userStatuses: TUserStatus[] = ["ACTIVE", "BLOCKED"];
     const [open, setOpen] = useState(false);

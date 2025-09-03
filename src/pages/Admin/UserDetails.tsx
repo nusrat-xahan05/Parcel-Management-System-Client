@@ -1,7 +1,9 @@
 import LoadingSpinner from "@/components/layout/LoadingSpinner/LoadingSpinner";
+import { UpdateAgentRequest } from "@/components/modules/Admin/User/UpdateAgentRequest";
 import { UpdateUserModal } from "@/components/modules/Admin/User/UpdateUserModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AgentStatus } from "@/constants/User";
 import { useSingleUserInfoQuery } from "@/redux/features/user/user.api";
 import type { IUser } from "@/types";
 import { CircleUserRound } from "lucide-react";
@@ -36,11 +38,20 @@ export default function UserDetails() {
 
                         {/* User Details Card */}
                         <Card className="border-l-4 border-l-primary shadow-lg rounded-2xl p-7">
-                            <CardHeader className="flex gap-4 items-center">
-                                <CircleUserRound className="size-12 sm:size-16" />
+                            <CardHeader className="flex justify-between items-center">
+                                <div className="flex gap-4 items-center">
+                                    <CircleUserRound className="size-12 sm:size-16" />
+                                    <div>
+                                        <CardTitle className="text-xl sm:text-2xl font-semibold">{data?.data?.name}</CardTitle>
+                                        <p className="text-lg text-muted-foreground">{data?.data?.email}</p>
+                                    </div>
+                                </div>
                                 <div>
-                                    <CardTitle className="text-xl sm:text-2xl font-semibold">{data?.data?.name}</CardTitle>
-                                    <p className="text-lg text-muted-foreground">{data?.data?.email}</p>
+                                    {
+                                        (data?.data?.agentStatus === AgentStatus.PENDING) && (
+                                            <UpdateAgentRequest profileInfo={data?.data as IUser}></UpdateAgentRequest>
+                                        )
+                                    }
                                 </div>
                             </CardHeader>
                             <CardContent className="space-y-4 pl-10">

@@ -5,6 +5,7 @@ const CreateParcel = lazy(() => import("@/pages/Admin&User/CreateParcel"));
 const MyParcels = lazy(() => import("@/pages/Admin&User/MyParcels"));
 const AllParcels = lazy(() => import("@/pages/Admin/AllParcels"));
 const AllUsers = lazy(() => import("@/pages/Admin/AllUsers"));
+const AllAgentRequest = lazy(() => import("@/pages/Admin/AllAgentRequest"));
 
 
 export const adminSidebarItems: ISidebarItem[] = [
@@ -31,11 +32,11 @@ export const adminSidebarItems: ISidebarItem[] = [
     {
         title: "Agent Management",
         items: [
-            // {
-            //     title: "Get All Users",
-            //     url: "/admin/all-users",
-            //     component: AddTourType
-            // }
+            {
+                title: "Get All Request",
+                url: "/admin/agent-requests",
+                component: AllAgentRequest
+            }
         ],
     },
     {

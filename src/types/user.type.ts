@@ -9,6 +9,7 @@ export interface IUser {
     password?: string;
     role: string;
     isVerified?: boolean;
+    userId?: IUser;
     phone?: string;
     address?: string;
     userStatus?: TUserStatus;

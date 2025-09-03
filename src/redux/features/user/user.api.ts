@@ -13,6 +13,16 @@ export const userApi = baseApi.injectEndpoints({
             providesTags: ["USER"],
         }),
 
+        // ------ GET ALL AGENT REQUEST
+        allAgentRequest: builder.query<IResponse<IUser[]>, IAllUserQueryParams>({
+            query: (params) => ({
+                url: "/user/agent-requests",
+                method: "GET",
+                params,
+            }),
+            providesTags: ["USER"],
+        }),
+
         // ------ CREATE AGENT REQUEST
         agentRequest: builder.mutation<IResponse<IUser>, void>({
             query: () => ({
@@ -40,7 +50,17 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['USER']
         }),
+
+        // ------ UPDATE AGENT REQUEST
+        updateAgentReq: builder.mutation({
+            query: ({ userId, userData }) => ({
+                url: `/user/review-agent-request/${userId}`,
+                method: 'POST',
+                data: userData 
+            }),
+            invalidatesTags: ['USER']
+        }),
     }),
 });
 
-export const { useAllUserInfoQuery, useAgentRequestMutation, useSingleUserInfoQuery, useUpdateUserInfoMutation } = userApi;
+export const { useAllUserInfoQuery, useAllAgentRequestQuery, useAgentRequestMutation, useSingleUserInfoQuery, useUpdateUserInfoMutation, useUpdateAgentReqMutation } = userApi;

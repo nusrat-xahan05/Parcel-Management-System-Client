@@ -7,7 +7,6 @@ import { MonthlyOverview } from "@/components/modules/Admin/Stats/MonthlyOvervie
 
 export default function Analytics() {
     const { data: parcelStatsData, isLoading: allParcelAnalyticsLoading, isError } = useParcelStatsQuery();
-    console.log('from parcel analytics: ', parcelStatsData);
 
     if (isError) {
         return toast.error('Error fetching analytics');
