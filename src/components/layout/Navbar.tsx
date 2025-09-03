@@ -45,7 +45,7 @@ export default function Navbar() {
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           asChild
-                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          className="text-muted-foreground hover:text-primary text-lg py-1.5 font-medium"
                         >
                           <Link to={link.href}>{link.label}</Link>
                         </NavigationMenuLink>
@@ -55,7 +55,7 @@ export default function Navbar() {
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           asChild
-                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          className="text-muted-foreground hover:text-primary text-lg py-1.5 font-medium"
                         >
                           <Link to={link.href}>{link.label}</Link>
                         </NavigationMenuLink>
@@ -71,7 +71,7 @@ export default function Navbar() {
             <ProfileMenu userInfo={data.data} />
           )}
           {!data?.data?.email && (
-            <Button asChild className="text-sm">
+            <Button asChild className="text-lg">
               <Link to="/login">Login</Link>
             </Button>
           )}

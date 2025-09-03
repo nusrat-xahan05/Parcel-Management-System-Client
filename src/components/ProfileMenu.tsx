@@ -25,7 +25,7 @@ export default function ProfileMenu({ userInfo }: ChildProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="text-sm">
+        <Button className="text-lg">
           Profile
         </Button>
       </DropdownMenuTrigger>
