@@ -10,6 +10,7 @@ import { adminSidebarItems } from "./adminSidebarItems";
 import { senderSidebarItems } from "./senderSidebarItems";
 import { receiverSidebarItems } from "./receiverSidebarItems";
 import { lazy } from "react";
+import { agentSidebarItems } from "./agentSidebarItems";
 const DashboardLayout = lazy(() => import("@/components/layout/DashboardLayout"));
 const Register = lazy(() => import("@/pages/Register"));
 const Login = lazy(() => import("@/pages/Login"));
@@ -98,6 +99,14 @@ export const router = createBrowserRouter([
                 path: 'parcel/:id'
             },
             ...generateRoutes(receiverSidebarItems),
+        ],
+    },
+    {
+        Component: withAuth(DashboardLayout, Role.AGENT as TRole),
+        path: "/agent",
+        children: [
+            { index: true, element: <Navigate to="/agent/assigned-parcels" /> },
+            ...generateRoutes(agentSidebarItems),
         ],
     },
     {

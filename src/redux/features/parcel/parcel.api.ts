@@ -24,6 +24,16 @@ export const parcelApi = baseApi.injectEndpoints({
             providesTags: ["PARCEL"],
         }),
 
+        // ------ GET ALL ASSIGNED PARCELS
+        assignedParcels: builder.query<IResponse<IParcel[]>, IAllParcelQueryParams>({
+            query: (params) => ({
+                url: "/parcel/assigned-parcels",
+                method: "GET",
+                params
+            }),
+            providesTags: ["PARCEL"],
+        }),
+
         // ------ GET MY PARCELs
         myParcels: builder.query({
             query: () => ({
@@ -70,6 +80,16 @@ export const parcelApi = baseApi.injectEndpoints({
             invalidatesTags: ['PARCEL']
         }),
 
+        // ------ UPDATE PARCEL STATUS BY AGENT
+        updateParcelStatus: builder.mutation({
+            query: ({ parcelId, parcelData }) => ({
+                url: `/parcel/status-update/${parcelId}`,
+                method: 'PATCH',
+                data: parcelData
+            }),
+            invalidatesTags: ['PARCEL']
+        }),
+
         // ------ CANCEL A PARCEL
         cancelParcel: builder.mutation({
             query: (parcelId) => ({
@@ -99,4 +119,4 @@ export const parcelApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useCreateParcelMutation, useAllParcelInfoQuery, useMyParcelsQuery, useSingleParcelInfoQuery, useIncomingParcelQuery, useUpdateParcelInfoMutation, useParcelHistoryQuery, useCancelParcelMutation, useConfirmParcelMutation, useLazyTrackParcelQuery } = parcelApi;
+export const { useCreateParcelMutation, useAllParcelInfoQuery, useAssignedParcelsQuery, useMyParcelsQuery, useSingleParcelInfoQuery, useIncomingParcelQuery, useUpdateParcelInfoMutation, useParcelHistoryQuery, useUpdateParcelStatusMutation, useCancelParcelMutation, useConfirmParcelMutation, useLazyTrackParcelQuery } = parcelApi;
