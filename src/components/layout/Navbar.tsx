@@ -27,8 +27,8 @@ export default function Navbar() {
   const { data, isLoading } = useUserInfoQuery();
 
   return (
-    <header className="border-b px-4 md:px-6">
-      <div className="flex h-16 items-center justify-between">
+    <header className="border-b">
+      <div className="mx-auto max-w-7xl flex h-16 items-center justify-between px-4 md:px-6">
         {/* Left side */}
         <Link className="text-primary hover:text-primary/90" to="/"><Logo /></Link>
 

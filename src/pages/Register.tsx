@@ -3,7 +3,7 @@ import { RegisterForm } from "@/components/modules/Authentication/RegisterForm";
 
 export default function Register() {
   return (
-    <div className="grid min-h-svh lg:grid-cols-2">
+    <div className="max-w-7xl mx-auto px-4 grid min-h-svh lg:grid-cols-2">
       <div className="relative hidden bg-muted lg:block">
         <img
           src={RegisterImg}

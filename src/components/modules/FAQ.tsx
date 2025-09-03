@@ -42,25 +42,27 @@ const items = [
 
 export default function FAQ() {
   return (
-    <div className='mx-auto max-w-7xl bg-foreground'>
-      <div className="md:grid md:grid-cols-2 md:items-center md:gap-4 px-4 md:px-6 py-0 sm:py-24">
-        <div className='pt-16 sm:pt-0'>
-          <img className='w-full sm:w-[80%] md:w-full mb-0 sm:mb-10 md:mb-0 text-center mx-auto' src={faqImg} alt="FAQ Image" />
-        </div>
-        <div className='pr-0 sm:pr-16 pb-16 sm:pb-0'>
-          <h3 className="text-[32px] font-extrabold pb-5 text-background">FAQ</h3>
-          <Accordion type="single" collapsible className="w-full" defaultValue="3">
-            {items.map((item) => (
-              <AccordionItem value={item.id} key={item.id} className="py-2 border-b-2 border-muted-foreground">
-                <AccordionTrigger className="py-2 text-base text-background leading-6 hover:no-underline">
-                  {item.title}
-                </AccordionTrigger>
-                <AccordionContent className="text-accent/80 pb-2">
-                  {item.content}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+    <div className='bg-foreground'>
+      <div className='mx-auto max-w-7xl'>
+        <div className="md:grid md:grid-cols-2 md:items-center md:gap-4 px-4 md:px-6 py-0 sm:py-24">
+          <div className='pt-16 sm:pt-0'>
+            <img className='w-full sm:w-[80%] md:w-full mb-0 sm:mb-10 md:mb-0 text-center mx-auto' src={faqImg} alt="FAQ Image" />
+          </div>
+          <div className='pr-0 sm:pr-16 pb-16 sm:pb-0'>
+            <h3 className="text-[32px] font-extrabold pb-5 text-background">FAQ</h3>
+            <Accordion type="single" collapsible className="w-full" defaultValue="3">
+              {items.map((item) => (
+                <AccordionItem value={item.id} key={item.id} className="py-2 border-b-2 border-muted-foreground">
+                  <AccordionTrigger className="py-2 text-base text-background leading-6 hover:no-underline">
+                    {item.title}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-accent/80 pb-2">
+                    {item.content}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </div>

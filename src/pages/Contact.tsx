@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/modules/ContactForm";
 
 export default function Contact() {
   return (
-    <div className="grid min-h-svh lg:grid-cols-2">
+    <div className="max-w-7xl mx-auto grid min-h-svh lg:grid-cols-2">
       <div className="relative hidden bg-muted lg:block">
         <img
           src={ContactImg}
